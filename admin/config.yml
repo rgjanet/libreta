@@ -1,0 +1,189 @@
+backend:
+  name: github
+  repo: YOUR-USERNAME/YOUR-REPO   # <- change this
+  branch: main
+site_url: https://YOUR-USERNAME.github.io/YOUR-REPO/
+media_folder: assets/uploads
+public_folder: /assets/uploads
+collections:
+  - name: site
+    label: Website
+    files:
+      - name: home
+        label: Home page
+        file: content/site.es.json
+        format: json
+        fields:
+          - {label: Site name, name: site_title, widget: string}
+          - {label: Tagline, name: tagline, widget: string, required: false}
+          - {label: Search description, name: description, widget: text, required: false}
+          - {label: Announcement strip (leave empty to hide), name: announcement, widget: string, required: false}
+          - label: Sections
+            name: sections
+            widget: list
+            hint: Add, remove and drag to reorder. Give a section a menu label to show it in the top menu.
+            types:
+              - label: Hero
+                name: hero
+                widget: object
+                fields:
+                  - {label: Headline, name: headline, widget: string}
+                  - {label: Text, name: text, widget: text}
+                  - {label: Button label, name: button_label, widget: string, required: false}
+                  - {label: Button link, name: button_link, widget: string, required: false}
+                  - {label: Image (replaces the shapes), name: image, widget: image, required: false}
+                  - {label: Image description, name: image_alt, widget: string, required: false}
+                  - {label: Menu label, name: nav_label, widget: string, required: false}
+              - label: Service tiles
+                name: services
+                widget: object
+                fields:
+                  - {label: Heading, name: heading, widget: string, required: false}
+                  - label: Tiles
+                    name: tiles
+                    widget: list
+                    fields:
+                      - {label: Title, name: title, widget: string}
+                      - {label: Text, name: text, widget: text}
+                      - {label: Colour, name: color, widget: select, default: pink, options: [pink, gold, aqua, red, olive, mint, paper]}
+                      - {label: Icon, name: icon, widget: select, default: pen, options: [pen, page, code, book, none]}
+                      - {label: Custom image (replaces icon), name: image, widget: image, required: false}
+                  - {label: Menu label, name: nav_label, widget: string, required: false}
+              - label: Vertical videos
+                name: videos
+                widget: object
+                fields:
+                  - {label: Heading, name: heading, widget: string, required: false}
+                  - {label: Intro, name: intro, widget: text, required: false}
+                  - label: Videos
+                    name: items
+                    widget: list
+                    fields:
+                      - {label: Title, name: title, widget: string}
+                      - {label: Video file (MP4, ideally under 25 MB), name: file, widget: file, required: false, choose_url: false}
+                      - {label: or a YouTube / Vimeo link, name: url, widget: string, required: false}
+                      - {label: Cover image (optional), name: poster, widget: image, required: false}
+                      - {label: Credit label (e.g. Presented by), name: credit_label, widget: string, required: false}
+                      - {label: Credit name (e.g. client), name: credit_name, widget: string, required: false}
+                      - {label: Credit link, name: credit_link, widget: string, required: false}
+                      - label: More links
+                        name: links
+                        widget: list
+                        required: false
+                        fields:
+                          - {label: Label, name: label, widget: string}
+                          - {label: URL, name: url, widget: string}
+                      - {label: Tile colour (while no cover), name: color, widget: select, default: aqua, options: [pink, gold, aqua, red, olive, mint, paper]}
+                  - {label: Menu label, name: nav_label, widget: string, required: false}
+              - label: Blog (latest posts)
+                name: blog
+                widget: object
+                fields:
+                  - {label: Heading, name: heading, widget: string}
+                  - {label: Intro, name: intro, widget: text, required: false}
+                  - {label: How many latest posts to show, name: count, widget: number, default: 3, min: 1, max: 12}
+                  - {label: Menu label, name: nav_label, widget: string, required: false}
+              - label: Work cards
+                name: work
+                widget: object
+                fields:
+                  - {label: Heading, name: heading, widget: string}
+                  - {label: Intro, name: intro, widget: text, required: false}
+                  - label: Projects
+                    name: items
+                    widget: list
+                    fields:
+                      - {label: Image, name: image, widget: image, required: false}
+                      - {label: Image description, name: image_alt, widget: string, required: false}
+                      - {label: Tag, name: tag, widget: string, required: false}
+                      - {label: Title, name: title, widget: string}
+                      - {label: Text, name: text, widget: text}
+                      - {label: Link, name: link, widget: string, required: false}
+                      - {label: Background colour, name: color, widget: select, default: aqua, options: [pink, gold, aqua, red, olive, mint, paper]}
+                  - {label: Menu label, name: nav_label, widget: string, required: false}
+              - label: About
+                name: about
+                widget: object
+                fields:
+                  - {label: Heading, name: heading, widget: string}
+                  - {label: To-do list title (shown when there is no photo), name: list_title, widget: string, required: false}
+                  - label: To-do list items
+                    name: list
+                    widget: list
+                    required: false
+                    fields:
+                      - {label: Item, name: text, widget: string}
+                      - {label: Done (ticked), name: done, widget: boolean, default: false}
+                  - {label: Photo, name: image, widget: image, required: false}
+                  - {label: Photo description, name: image_alt, widget: string, required: false}
+                  - {label: Text, name: body, widget: markdown}
+                  - {label: Menu label, name: nav_label, widget: string, required: false}
+              - label: Feature (book, launch, offer)
+                name: feature
+                widget: object
+                fields:
+                  - {label: Heading, name: heading, widget: string}
+                  - {label: Text, name: body, widget: markdown}
+                  - {label: Image, name: image, widget: image, required: false}
+                  - {label: Image description, name: image_alt, widget: string, required: false}
+                  - {label: Button label, name: button_label, widget: string, required: false}
+                  - {label: Button link, name: button_link, widget: string, required: false}
+                  - {label: Background colour, name: color, widget: select, default: gold, options: [pink, gold, aqua, red, olive, mint, paper]}
+                  - {label: Menu label, name: nav_label, widget: string, required: false}
+              - label: Embed (video, podcast, Substack, map…)
+                name: embed
+                widget: object
+                fields:
+                  - {label: Heading, name: heading, widget: string, required: false}
+                  - {label: Intro, name: intro, widget: text, required: false}
+                  - {label: Embed code (paste the iframe), name: code, widget: text}
+                  - {label: Caption, name: caption, widget: string, required: false}
+                  - {label: Menu label, name: nav_label, widget: string, required: false}
+              - label: Image gallery
+                name: gallery
+                widget: object
+                fields:
+                  - {label: Heading, name: heading, widget: string, required: false}
+                  - label: Images
+                    name: images
+                    widget: list
+                    fields:
+                      - {label: Image, name: image, widget: image}
+                      - {label: Image description, name: alt, widget: string, required: false}
+                      - {label: Caption, name: caption, widget: string, required: false}
+                  - {label: Menu label, name: nav_label, widget: string, required: false}
+              - label: Text block
+                name: text
+                widget: object
+                fields:
+                  - {label: Heading, name: heading, widget: string}
+                  - {label: Text, name: body, widget: markdown}
+                  - {label: Menu label, name: nav_label, widget: string, required: false}
+          - label: Blog posts
+            name: posts
+            widget: list
+            hint: Newest first on the site. Each language has its own posts.
+            fields:
+              - {label: Title, name: title, widget: string}
+              - {label: Web address ending (lowercase, dashes; empty = made from title), name: slug, widget: string, required: false}
+              - {label: Date, name: date, widget: datetime}
+              - {label: Tag, name: tag, widget: string, required: false}
+              - {label: Cover image, name: cover, widget: image, required: false}
+              - {label: Cover image description, name: cover_alt, widget: string, required: false}
+              - {label: Card colour (when no cover), name: color, widget: select, default: pink, options: [pink, gold, aqua, red, olive, mint, paper]}
+              - {label: Short summary, name: excerpt, widget: text}
+              - {label: Post, name: body, widget: markdown}
+          - {label: Blog - "All posts" button, name: blog_all, widget: string}
+          - {label: Blog - "Back to blog" link, name: blog_back, widget: string}
+          - {label: Blog - "min read" label, name: blog_read, widget: string}
+          - {label: Blog - "Newer" post label, name: blog_newer, widget: string}
+          - {label: Blog - "Older" post label, name: blog_older, widget: string}
+          - {label: Blog - message when a post is missing in this language, name: blog_missing, widget: string}
+          - {label: Footer heading, name: footer_heading, widget: string}
+          - label: Footer links
+            name: footer_links
+            widget: list
+            fields:
+              - {label: Label, name: label, widget: string}
+              - {label: URL, name: url, widget: string}
+          - {label: Legal line, name: legal, widget: string}

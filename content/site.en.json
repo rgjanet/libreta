@@ -1,0 +1,151 @@
+{
+ "site_title": "janet rodríguez*",
+ "tagline": "writer, editor, web developer",
+ "description": "Freelance writer, editor and web developer in Puerto Rico.",
+ "announcement": "Now booking manuscript edits and Shopify builds for 2027",
+ "footer_heading": "pen pals.",
+ "footer_links": [
+  {
+   "label": "Vivir del Cuento",
+   "url": "#"
+  },
+  {
+   "label": "La Mala Suerte Editorial",
+   "url": "#"
+  },
+  {
+   "label": "Email",
+   "url": "mailto:hello@example.com"
+  }
+ ],
+ "legal": "© 2026 Janet Rodríguez · Made in Puerto Rico",
+ "sections": [
+  {
+   "type": "hero",
+   "headline": "Making words work, and look good doing it.",
+   "text": "Writer, editor and web developer in Puerto Rico, working with authors, bookshops and independent brands.",
+   "button_label": "See what I do",
+   "button_link": "#videos"
+  },
+  {
+   "type": "services",
+   "heading": "",
+   "tiles": [
+    {
+     "title": "Write",
+     "text": "Essays, web copy and long-form pieces in Spanish or English, with a voice.",
+     "color": "pink",
+     "icon": "pen"
+    },
+    {
+     "title": "Edit",
+     "text": "Editing, proofreading and typesetting for independent authors, through La Mala Suerte Editorial.",
+     "color": "gold",
+     "icon": "page"
+    },
+    {
+     "title": "Build",
+     "text": "Shopify Liquid themes, Klaviyo emails and fast, readable websites.",
+     "color": "aqua",
+     "icon": "code"
+    },
+    {
+     "title": "Read",
+     "text": "Falsaria, my novel, and Vivir del Cuento, my Substack on books and bookshops.",
+     "color": "red",
+     "icon": "book"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "nav_label": "Videos",
+   "heading": "Work in motion",
+   "intro": "Short vertical videos from projects for me and for clients. Tap one to watch.",
+   "items": [
+    {
+     "title": "A video for a client",
+     "credit_label": "Presented by",
+     "color": "aqua"
+    },
+    {
+     "title": "A video for my own project",
+     "credit_label": "Presented by",
+     "color": "pink"
+    },
+    {
+     "title": "Behind the scenes",
+     "credit_label": "Presented by",
+     "color": "gold"
+    }
+   ]
+  },
+  {
+   "type": "blog",
+   "nav_label": "Blog",
+   "heading": "Recent pages from the notebook",
+   "intro": "Notes on writing, editing and building.",
+   "count": 3
+  },
+  {
+   "type": "about",
+   "nav_label": "About",
+   "heading": "One person, three crafts",
+   "body": "I've worked as a writer, an editor and a developer, and the work is better when one person holds all three.\n\nI'm based in Puerto Rico and happy to work in Spanish, English, or both on the same project.",
+   "list_title": "My process, as a to-do list",
+   "list": [
+    {
+     "text": "Write the first draft",
+     "done": true
+    },
+    {
+     "text": "Edit until it sounds right",
+     "done": true
+    },
+    {
+     "text": "Build it a home online",
+     "done": true
+    },
+    {
+     "text": "Read the next book",
+     "done": false
+    }
+   ]
+  }
+ ],
+ "posts": [
+  {
+   "title": "A first page from the notebook",
+   "slug": "first-page",
+   "tag": "Notes",
+   "date": "2026-10-20T12:00:00.000Z",
+   "excerpt": "This is a sample post. Replace it with your own from the CMS.",
+   "body": "This is a sample post, so you can see how a page is laid out. Replace it from the CMS.\n\n## A heading starts a new part\n\nWrite in **Markdown**: bold, *italics*, [links](#), and lists.\n\n> A quote stands out in the margin, like a note in a journal.\n\n- Add images, with a short description\n- Paste in a video or podcast player\n- Keep going as long as you like\n\n---\n\n### A smaller heading\n\nPosts appear newest first, with the next and previous post linked at the bottom.",
+   "color": "pink"
+  },
+  {
+   "title": "What I’m reading this month",
+   "slug": "reading-this-month",
+   "tag": "Reading",
+   "date": "2026-10-12T12:00:00.000Z",
+   "excerpt": "A sample post about books and bookshops.",
+   "body": "Another sample post. Posts appear newest first.",
+   "color": "gold"
+  },
+  {
+   "title": "Behind a Shopify build",
+   "slug": "behind-a-shopify-build",
+   "tag": "Build",
+   "date": "2026-10-03T12:00:00.000Z",
+   "excerpt": "A sample post about a recent project.",
+   "body": "A third sample post.",
+   "color": "aqua"
+  }
+ ],
+ "blog_all": "All posts",
+ "blog_back": "Back to blog",
+ "blog_missing": "This post isn’t available in this language yet.",
+ "blog_read": "min read",
+ "blog_newer": "Newer",
+ "blog_older": "Older"
+}

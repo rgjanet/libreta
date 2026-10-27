@@ -1,0 +1,151 @@
+{
+ "site_title": "janet rodríguez*",
+ "tagline": "escritora, editora, desarrolladora web",
+ "description": "Escritora, editora y desarrolladora web freelance en Puerto Rico.",
+ "announcement": "Aceptando ediciones de manuscritos y proyectos de Shopify para 2027",
+ "footer_heading": "pen pals.",
+ "footer_links": [
+  {
+   "label": "Vivir del Cuento",
+   "url": "#"
+  },
+  {
+   "label": "La Mala Suerte Editorial",
+   "url": "#"
+  },
+  {
+   "label": "Correo",
+   "url": "mailto:hello@example.com"
+  }
+ ],
+ "legal": "© 2026 Janet Rodríguez · Hecho en Puerto Rico",
+ "sections": [
+  {
+   "type": "hero",
+   "headline": "Palabras que funcionan, y que se ven bien.",
+   "text": "Escritora, editora y desarrolladora web en Puerto Rico. Trabajo con autores, librerías y marcas independientes.",
+   "button_label": "Mira lo que hago",
+   "button_link": "#videos"
+  },
+  {
+   "type": "services",
+   "heading": "",
+   "tiles": [
+    {
+     "title": "Escribo",
+     "text": "Ensayos, textos web y piezas largas en español o inglés, con voz propia.",
+     "color": "pink",
+     "icon": "pen"
+    },
+    {
+     "title": "Edito",
+     "text": "Edición, corrección y maquetación para autores independientes, con La Mala Suerte Editorial.",
+     "color": "gold",
+     "icon": "page"
+    },
+    {
+     "title": "Construyo",
+     "text": "Temas de Shopify Liquid, correos con Klaviyo y sitios rápidos y legibles.",
+     "color": "aqua",
+     "icon": "code"
+    },
+    {
+     "title": "Leo",
+     "text": "Falsaria, mi novela, y Vivir del Cuento, mi Substack sobre libros y librerías.",
+     "color": "red",
+     "icon": "book"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "nav_label": "Videos",
+   "heading": "Trabajo en movimiento",
+   "intro": "Videos verticales cortos de proyectos propios y de clientes. Toca uno para verlo.",
+   "items": [
+    {
+     "title": "Un video para un cliente",
+     "credit_label": "Presentado por",
+     "color": "aqua"
+    },
+    {
+     "title": "Un video de un proyecto propio",
+     "credit_label": "Presentado por",
+     "color": "pink"
+    },
+    {
+     "title": "Detrás de cámara",
+     "credit_label": "Presentado por",
+     "color": "gold"
+    }
+   ]
+  },
+  {
+   "type": "blog",
+   "nav_label": "Blog",
+   "heading": "Páginas recientes del cuaderno",
+   "intro": "Notas sobre escribir, editar y construir.",
+   "count": 3
+  },
+  {
+   "type": "about",
+   "nav_label": "Sobre mí",
+   "heading": "Una persona, tres oficios",
+   "body": "He trabajado como escritora, editora y desarrolladora, y el trabajo mejora cuando una misma persona lo hace todo.\n\nVivo en Puerto Rico y trabajo en español, en inglés o en ambos en un mismo proyecto.",
+   "list_title": "Mi proceso, en lista de tareas",
+   "list": [
+    {
+     "text": "Escribir el primer borrador",
+     "done": true
+    },
+    {
+     "text": "Editar hasta que suene bien",
+     "done": true
+    },
+    {
+     "text": "Construirle un hogar en la web",
+     "done": true
+    },
+    {
+     "text": "Leer el próximo libro",
+     "done": false
+    }
+   ]
+  }
+ ],
+ "posts": [
+  {
+   "title": "Una primera página del cuaderno",
+   "slug": "first-page",
+   "tag": "Notas",
+   "date": "2026-10-20T12:00:00.000Z",
+   "excerpt": "Esta es una entrada de ejemplo. Sustitúyela desde el CMS.",
+   "body": "Esta es una entrada de ejemplo para que veas cómo se organiza una página. Sustitúyela desde el CMS.\n\n## Un título abre una parte nueva\n\nEscribe en **Markdown**: negritas, *cursivas*, [enlaces](#) y listas.\n\n> Una cita destaca en el margen, como una nota en un diario.\n\n- Añade imágenes, con una descripción breve\n- Pega un video o un reproductor de podcast\n- Sigue todo lo que quieras\n\n---\n\n### Un título más pequeño\n\nLas entradas aparecen de la más nueva a la más antigua, con la siguiente y la anterior enlazadas al final.",
+   "color": "pink"
+  },
+  {
+   "title": "Lo que leo este mes",
+   "slug": "reading-this-month",
+   "tag": "Lectura",
+   "date": "2026-10-12T12:00:00.000Z",
+   "excerpt": "Una entrada de ejemplo sobre libros y librerías.",
+   "body": "Otra entrada de ejemplo. Las entradas se muestran de la más nueva a la más antigua.",
+   "color": "gold"
+  },
+  {
+   "title": "Detrás de un proyecto de Shopify",
+   "slug": "behind-a-shopify-build",
+   "tag": "Construyo",
+   "date": "2026-10-03T12:00:00.000Z",
+   "excerpt": "Una entrada de ejemplo sobre un proyecto reciente.",
+   "body": "Una tercera entrada de ejemplo.",
+   "color": "aqua"
+  }
+ ],
+ "blog_all": "Todas las entradas",
+ "blog_back": "Volver al blog",
+ "blog_missing": "Esta entrada aún no está disponible en este idioma.",
+ "blog_read": "min de lectura",
+ "blog_newer": "Más nueva",
+ "blog_older": "Más antigua"
+}
