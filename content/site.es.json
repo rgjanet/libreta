@@ -1,135 +1,146 @@
 {
- "site_title": "janet rodríguez*",
- "tagline": "escritora, editora, desarrolladora web",
- "description": "Escritora, editora y desarrolladora web freelance en Puerto Rico.",
- "announcement": "Aceptando ediciones de manuscritos y proyectos de Shopify para 2027",
- "footer_heading": "pen pals.",
- "footer_links": [
-  {
-   "label": "Vivir del Cuento",
-   "url": "#"
-  },
-  {
-   "label": "La Mala Suerte Editorial",
-   "url": "#"
-  },
-  {
-   "label": "Correo",
-   "url": "mailto:hello@example.com"
-  }
- ],
- "legal": "© 2026 Janet Rodríguez · Hecho en Puerto Rico",
- "sections": [
-  {
-   "type": "hero",
-   "headline": "Palabras que funcionan, y que se ven bien.",
-   "text": "Escritora, editora y desarrolladora web en Puerto Rico. Trabajo con autores, librerías y marcas independientes.",
-   "button_label": "Mira lo que hago",
-   "button_link": "#videos"
-  },
-  {
-   "type": "services",
-   "heading": "",
-   "tiles": [
+  "site_title": "Janet Rodríguez",
+  "tagline": "Escritora, periodista, creadora de contenido y editora de libros",
+  "description": "Escritora, periodista, creadora de contenido y editora de libros.",
+  "announcement": "Aceptando ediciones de manuscritos y proyectos de Shopify para 2027",
+  "sections": [
     {
-     "title": "Escribo",
-     "text": "Ensayos, textos web y piezas largas en español o inglés, con voz propia.",
-     "color": "pink",
-     "icon": "pen"
+      "type": "hero",
+      "headline": "Una Cuca Gómez digital de la vida",
+      "text": "Escritora, periodista, creadora de contenido y editora de libros. Trabajo con autores, librerías y marcas independientes, así como medios tradicionales.",
+      "button_label": "Mira lo que hago",
+      "button_link": "#videos",
+      "image": "",
+      "image_alt": "",
+      "nav_label": ""
     },
     {
-     "title": "Edito",
-     "text": "Edición, corrección y maquetación para autores independientes, con La Mala Suerte Editorial.",
-     "color": "gold",
-     "icon": "page"
+      "type": "services",
+      "nav_label": "",
+      "heading": "",
+      "tiles": [
+        {
+          "title": "Escribo",
+          "text": "Ensayos, textos web y piezas largas en español o inglés, con voz propia.",
+          "color": "pink",
+          "icon": "pen",
+          "image": ""
+        },
+        {
+          "title": "Edito",
+          "text": "Edición, corrección y maquetación para autores independientes, con La Mala Suerte Editorial.",
+          "color": "gold",
+          "icon": "page",
+          "image": ""
+        },
+        {
+          "title": "Construyo",
+          "text": "Temas de Shopify Liquid, correos con Klaviyo y sitios rápidos y legibles.",
+          "color": "aqua",
+          "icon": "code",
+          "image": ""
+        },
+        {
+          "title": "Leo",
+          "text": "Falsaria, mi novela, y Vivir del Cuento, mi Substack sobre libros y librerías.",
+          "color": "red",
+          "icon": "book",
+          "image": ""
+        }
+      ]
     },
     {
-     "title": "Construyo",
-     "text": "Temas de Shopify Liquid, correos con Klaviyo y sitios rápidos y legibles.",
-     "color": "aqua",
-     "icon": "code"
+      "type": "works",
+      "button_label": "Ver todos los videos",
+      "nav_label": "",
+      "heading": "Video",
+      "intro": "Videos verticales de proyectos propios y de clientes. Toca uno para verlo.",
+      "category": "video",
+      "count": 4
     },
     {
-     "title": "Leo",
-     "text": "Falsaria, mi novela, y Vivir del Cuento, mi Substack sobre libros y librerías.",
-     "color": "red",
-     "icon": "book"
+      "type": "blog",
+      "nav_label": "Blog",
+      "heading": "Páginas recientes del cuaderno",
+      "intro": "Notas sobre escribir, editar y construir.",
+      "count": 3
+    },
+    {
+      "type": "about",
+      "image": "",
+      "image_alt": "",
+      "nav_label": "Sobre mí",
+      "heading": "Una persona, tres oficios",
+      "list_title": "Mi proceso, en lista de tareas",
+      "list": [
+        {
+          "text": "Escribir el primer borrador",
+          "done": true
+        },
+        {
+          "text": "Editar hasta que suene bien",
+          "done": true
+        },
+        {
+          "text": "Construirle un hogar en la web",
+          "done": true
+        },
+        {
+          "text": "Leer el próximo libro",
+          "done": false
+        }
+      ],
+      "body": "He trabajado como escritora, editora y desarrolladora, y el trabajo mejora cuando una misma persona lo hace todo.\n\nVivo en Puerto Rico y trabajo en español, en inglés o en ambos en un mismo proyecto."
     }
-   ]
-  },
-  {
-   "type": "works",
-   "category": "video",
-   "heading": "Video",
-   "intro": "Videos verticales de proyectos propios y de clientes. Toca uno para verlo.",
-   "count": 4,
-   "button_label": "Ver todos los videos"
-  },
-  {
-   "type": "blog",
-   "nav_label": "Blog",
-   "heading": "Páginas recientes del cuaderno",
-   "intro": "Notas sobre escribir, editar y construir.",
-   "count": 3
-  },
-  {
-   "type": "about",
-   "nav_label": "Sobre mí",
-   "heading": "Una persona, tres oficios",
-   "body": "He trabajado como escritora, editora y desarrolladora, y el trabajo mejora cuando una misma persona lo hace todo.\n\nVivo en Puerto Rico y trabajo en español, en inglés o en ambos en un mismo proyecto.",
-   "list_title": "Mi proceso, en lista de tareas",
-   "list": [
+  ],
+  "blog_all": "Todas las entradas",
+  "blog_back": "Volver al blog",
+  "blog_read": "min de lectura",
+  "blog_newer": "Más nueva",
+  "blog_older": "Más antigua",
+  "blog_missing": "Esta entrada aún no está disponible en este idioma.",
+  "categories": [
     {
-     "text": "Escribir el primer borrador",
-     "done": true
+      "id": "video",
+      "label": "Video",
+      "heading": "Video",
+      "intro": "Videos verticales de proyectos propios y de clientes. Toca uno para verlo."
     },
     {
-     "text": "Editar hasta que suene bien",
-     "done": true
+      "id": "audio",
+      "label": "Audio y podcasts",
+      "heading": "Audio y podcasts",
+      "intro": "Episodios, entrevistas y piezas sonoras."
     },
     {
-     "text": "Construirle un hogar en la web",
-     "done": true
+      "id": "writing",
+      "label": "Escritura",
+      "heading": "Escritura",
+      "intro": "Ensayos, artículos y textos publicados."
     },
     {
-     "text": "Leer el próximo libro",
-     "done": false
+      "id": "pictures",
+      "label": "Imágenes",
+      "heading": "Imágenes",
+      "intro": "Fotografías y piezas visuales de mis proyectos."
     }
-   ]
-  }
- ],
- "blog_all": "Todas las entradas",
- "blog_back": "Volver al blog",
- "blog_missing": "Esta entrada aún no está disponible en este idioma.",
- "blog_read": "min de lectura",
- "blog_newer": "Más nueva",
- "blog_older": "Más antigua",
- "categories": [
-  {
-   "id": "video",
-   "label": "Video",
-   "heading": "Video",
-   "intro": "Videos verticales de proyectos propios y de clientes. Toca uno para verlo."
-  },
-  {
-   "id": "audio",
-   "label": "Audio y podcasts",
-   "heading": "Audio y podcasts",
-   "intro": "Episodios, entrevistas y piezas sonoras."
-  },
-  {
-   "id": "writing",
-   "label": "Escritura",
-   "heading": "Escritura",
-   "intro": "Ensayos, artículos y textos publicados."
-  },
-  {
-   "id": "pictures",
-   "label": "Imágenes",
-   "heading": "Imágenes",
-   "intro": "Fotografías y piezas visuales de mis proyectos."
-  }
- ],
- "home_label": "Inicio",
- "empty_label": "Pronto habrá trabajos aquí."
+  ],
+  "home_label": "Inicio",
+  "empty_label": "Pronto habrá trabajos aquí.",
+  "footer_heading": "pen pals.",
+  "footer_links": [
+    {
+      "label": "Vivir del Cuento",
+      "url": "#"
+    },
+    {
+      "label": "La Mala Suerte Editorial",
+      "url": "#"
+    },
+    {
+      "label": "Correo",
+      "url": "mailto:hello@example.com"
+    }
+  ],
+  "legal": "© 2026 Janet Rodríguez · Hecho en Puerto Rico"
 }
