@@ -1,10 +1,6 @@
-# Janet Rodríguez — site
+# Janet Rodríguez — site (Spanish)
 
-1. Create a GitHub repo, upload these files, and turn on Settings → Pages → Deploy from branch (main, root).
-2. Edit `admin/config.yml`: set `repo` and `site_url`.
-3. Open `https://YOUR-USERNAME.github.io/YOUR-REPO/admin/` and sign in with GitHub (a personal access token works; no server needed).
-4. Edit content in the CMS. Each save is a commit and the site updates in a minute or two.
-
-## Spanish only (for now)
-The site currently shows Spanish only (`LANGS=['es']` in `index.html`; CMS reads `content/site.es.json`). English files are kept in `content/`.
-To bring back EN/ES: set `LANGS=['en','es']` in `index.html` and replace `admin/config.yml` with `admin/config.bilingual.yml`.
+- Edit content at /admin/ (Sveltia CMS). Sidebar: Website (home page, menu, sections), Blog (one entry per post), Work (one entry per video / audio / writing / pictures piece).
+- On every save, the GitHub Action in .github/workflows/deploy.yml builds the lists and publishes the site.
+- One-time setup: Settings > Pages > Build and deployment > Source = GitHub Actions.
+- Obsolete if present in the repo (safe to delete): admin/config.bilingual.yml, content/site.en.json, content/posts.en.json, content/posts.es.json.

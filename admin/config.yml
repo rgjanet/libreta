@@ -49,31 +49,15 @@ collections:
                       - {label: Icon, name: icon, widget: select, default: pen, options: [pen, page, code, book, none]}
                       - {label: Custom image (replaces icon), name: image, widget: image, required: false}
                   - {label: Menu label, name: nav_label, widget: string, required: false}
-              - label: Vertical videos
-                name: videos
+              - label: Latest work (video, audio, writing, pictures)
+                name: works
                 widget: object
                 fields:
-                  - {label: Heading, name: heading, widget: string, required: false}
+                  - {label: Heading, name: heading, widget: string}
                   - {label: Intro, name: intro, widget: text, required: false}
-                  - label: Videos
-                    name: items
-                    widget: list
-                    fields:
-                      - {label: Title, name: title, widget: string}
-                      - {label: Video file (MP4, ideally under 25 MB), name: file, widget: file, required: false, choose_url: false}
-                      - {label: or a YouTube / Vimeo link, name: url, widget: string, required: false}
-                      - {label: Cover image (optional), name: poster, widget: image, required: false}
-                      - {label: Credit label (e.g. Presented by), name: credit_label, widget: string, required: false}
-                      - {label: Credit name (e.g. client), name: credit_name, widget: string, required: false}
-                      - {label: Credit link, name: credit_link, widget: string, required: false}
-                      - label: More links
-                        name: links
-                        widget: list
-                        required: false
-                        fields:
-                          - {label: Label, name: label, widget: string}
-                          - {label: URL, name: url, widget: string}
-                      - {label: Tile colour (while no cover), name: color, widget: select, default: aqua, options: [pink, gold, aqua, red, olive, mint, paper]}
+                  - {label: Kind of work, name: category, widget: select, default: video, options: [{label: Video, value: video}, {label: Audio and podcasts, value: audio}, {label: Writing, value: writing}, {label: Pictures, value: pictures}]}
+                  - {label: How many to show, name: count, widget: number, default: 4, min: 1, max: 12}
+                  - {label: Button text (links to that work page), name: button_label, widget: string, required: false}
                   - {label: Menu label, name: nav_label, widget: string, required: false}
               - label: Blog (latest posts)
                 name: blog
@@ -165,6 +149,19 @@ collections:
           - {label: Blog - "Newer" post label, name: blog_newer, widget: string}
           - {label: Blog - "Older" post label, name: blog_older, widget: string}
           - {label: Blog - message when a post is missing in this language, name: blog_missing, widget: string}
+          - label: Work pages (menu names and page headings)
+            name: categories
+            widget: list
+            label_singular: page
+            summary: "{{fields.label}}"
+            hint: One page for each kind of work. Remove one to hide it from the menu.
+            fields:
+              - {label: Kind of work, name: id, widget: select, options: [{label: Video, value: video}, {label: Audio and podcasts, value: audio}, {label: Writing, value: writing}, {label: Pictures, value: pictures}]}
+              - {label: Menu name, name: label, widget: string}
+              - {label: Page heading, name: heading, widget: string}
+              - {label: Intro, name: intro, widget: text, required: false}
+          - {label: Label - back to home, name: home_label, widget: string}
+          - {label: Message when a work page is empty, name: empty_label, widget: string}
           - {label: Footer heading, name: footer_heading, widget: string}
           - label: Footer links
             name: footer_links
@@ -175,27 +172,57 @@ collections:
           - {label: Legal line, name: legal, widget: string}
   - name: blog
     label: Blog
-    files:
-      - name: posts
-        label: Blog posts
-        file: content/posts.es.json
-        format: json
+    label_singular: Post
+    folder: content/blog
+    create: true
+    format: json
+    extension: json
+    fields:
+      - {label: Title, name: title, widget: string}
+      - {label: Date, name: date, widget: datetime}
+      - {label: Tag, name: tag, widget: string, required: false}
+      - {label: Cover image, name: cover, widget: image, required: false}
+      - {label: Cover image description, name: cover_alt, widget: string, required: false}
+      - {label: Card colour (when no cover), name: color, widget: select, default: pink, options: [pink, gold, aqua, red, olive, mint, paper]}
+      - {label: Short summary, name: excerpt, widget: text}
+      - {label: Post, name: body, widget: markdown}
+  - name: work
+    label: Work
+    label_singular: Work
+    folder: content/work
+    create: true
+    format: json
+    extension: json
+    fields:
+      - {label: Title, name: title, widget: string}
+      - {label: Kind of work, name: category, widget: select, options: [{label: Video, value: video}, {label: Audio and podcasts, value: audio}, {label: Writing, value: writing}, {label: Pictures, value: pictures}]}
+      - {label: Date, name: date, widget: datetime}
+      - {label: Cover image, name: cover, widget: image, required: false}
+      - {label: Cover image description, name: cover_alt, widget: string, required: false}
+      - {label: Short summary, name: summary, widget: text, required: false}
+      - {label: "VIDEO: upload an MP4 (ideally under 25 MB)", name: video_file, widget: file, required: false, choose_url: false}
+      - {label: "VIDEO: or paste a YouTube or Vimeo link", name: video_url, widget: string, required: false}
+      - {label: "AUDIO: paste the player code (Spotify, Apple Podcasts, SoundCloud)", name: embed, widget: text, required: false}
+      - {label: "AUDIO: or upload an MP3", name: audio_file, widget: file, required: false, choose_url: false}
+      - label: "PICTURES: images"
+        name: images
+        widget: list
+        required: false
+        label_singular: image
         fields:
-          - label: Posts
-            name: posts
-            widget: list
-            label_singular: post
-            summary: "{{fields.title}}"
-            add_to_top: true
-            collapsed: true
-            hint: Click "Add post" to write a new one. The newest date shows first on the site.
-            fields:
-              - {label: Title, name: title, widget: string}
-              - {label: Web address ending (lowercase, dashes; empty = made from title), name: slug, widget: string, required: false}
-              - {label: Date, name: date, widget: datetime}
-              - {label: Tag, name: tag, widget: string, required: false}
-              - {label: Cover image, name: cover, widget: image, required: false}
-              - {label: Cover image description, name: cover_alt, widget: string, required: false}
-              - {label: Card colour (when no cover), name: color, widget: select, default: pink, options: [pink, gold, aqua, red, olive, mint, paper]}
-              - {label: Short summary, name: excerpt, widget: text}
-              - {label: Post, name: body, widget: markdown}
+          - {label: Image, name: image, widget: image}
+          - {label: Image description, name: alt, widget: string, required: false}
+          - {label: Caption, name: caption, widget: string, required: false}
+      - {label: "WRITING: link to the published piece", name: link, widget: string, required: false}
+      - {label: "WRITING: or the full text (opens on its own page)", name: body, widget: markdown, required: false}
+      - {label: Credit label (e.g. Presented by), name: credit_label, widget: string, required: false}
+      - {label: "Credit name (client, publication, show)", name: credit_name, widget: string, required: false}
+      - {label: Credit link, name: credit_link, widget: string, required: false}
+      - label: More links
+        name: links
+        widget: list
+        required: false
+        fields:
+          - {label: Label, name: label, widget: string}
+          - {label: URL, name: url, widget: string}
+      - {label: Card colour (when no cover), name: color, widget: select, default: aqua, options: [pink, gold, aqua, red, olive, mint, paper]}

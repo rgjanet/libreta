@@ -1,0 +1,9 @@
+{
+ "title": "Un artículo publicado",
+ "category": "writing",
+ "date": "2026-10-15T12:00:00.000Z",
+ "summary": "Ejemplo. Enlaza la pieza publicada, o escribe el texto completo y se abrirá en su propia página.",
+ "credit_name": "Nombre de la publicación",
+ "body": "Este es un texto de ejemplo. Si dejas el enlace vacío y escribes el texto aquí, la pieza se abre en su propia página.\n\n## Un subtítulo\n\nPuedes usar **Markdown**, imágenes y enlaces.",
+ "color": "gold"
+}

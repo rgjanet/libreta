@@ -1,0 +1,8 @@
+{
+ "title": "Una primera página del cuaderno",
+ "tag": "Notas",
+ "date": "2026-10-20T12:00:00.000Z",
+ "excerpt": "Esta es una entrada de ejemplo. Sustitúyela desde el CMS.",
+ "body": "Esta es una entrada de ejemplo para que veas cómo se organiza una página. Sustitúyela desde el CMS.\n\n## Un título abre una parte nueva\n\nEscribe en **Markdown**: negritas, *cursivas*, [enlaces](#) y listas.\n\n> Una cita destaca en el margen, como una nota en un diario.\n\n- Añade imágenes, con una descripción breve\n- Pega un video o un reproductor de podcast\n- Sigue todo lo que quieras\n\n---\n\n### Un título más pequeño\n\nLas entradas aparecen de la más nueva a la más antigua, con la siguiente y la anterior enlazadas al final.",
+ "color": "pink"
+}

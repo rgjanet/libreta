@@ -58,27 +58,12 @@
    ]
   },
   {
-   "type": "videos",
-   "nav_label": "Videos",
-   "heading": "Trabajo en movimiento",
-   "intro": "Videos verticales cortos de proyectos propios y de clientes. Toca uno para verlo.",
-   "items": [
-    {
-     "title": "Un video para un cliente",
-     "credit_label": "Presentado por",
-     "color": "aqua"
-    },
-    {
-     "title": "Un video de un proyecto propio",
-     "credit_label": "Presentado por",
-     "color": "pink"
-    },
-    {
-     "title": "Detrás de cámara",
-     "credit_label": "Presentado por",
-     "color": "gold"
-    }
-   ]
+   "type": "works",
+   "category": "video",
+   "heading": "Video",
+   "intro": "Videos verticales de proyectos propios y de clientes. Toca uno para verlo.",
+   "count": 4,
+   "button_label": "Ver todos los videos"
   },
   {
    "type": "blog",
@@ -118,5 +103,33 @@
  "blog_missing": "Esta entrada aún no está disponible en este idioma.",
  "blog_read": "min de lectura",
  "blog_newer": "Más nueva",
- "blog_older": "Más antigua"
+ "blog_older": "Más antigua",
+ "categories": [
+  {
+   "id": "video",
+   "label": "Video",
+   "heading": "Video",
+   "intro": "Videos verticales de proyectos propios y de clientes. Toca uno para verlo."
+  },
+  {
+   "id": "audio",
+   "label": "Audio y podcasts",
+   "heading": "Audio y podcasts",
+   "intro": "Episodios, entrevistas y piezas sonoras."
+  },
+  {
+   "id": "writing",
+   "label": "Escritura",
+   "heading": "Escritura",
+   "intro": "Ensayos, artículos y textos publicados."
+  },
+  {
+   "id": "pictures",
+   "label": "Imágenes",
+   "heading": "Imágenes",
+   "intro": "Fotografías y piezas visuales de mis proyectos."
+  }
+ ],
+ "home_label": "Inicio",
+ "empty_label": "Pronto habrá trabajos aquí."
 }

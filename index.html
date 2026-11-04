@@ -101,13 +101,27 @@ const fd=x=>{const t=new Date(x);return isNaN(t)?'':t.toLocaleDateString(lang,{y
 const sorted=d=>(d.posts||[]).slice().sort((a,b)=>new Date(b.date)-new Date(a.date));
 const PS=p=>p.slug||slug(p.title);
 const PL=p=>`<a class="card" href="?post=${encodeURIComponent(PS(p))}"><div class="img ${COL(p.color)}">${p.cover?img(p.cover,p.cover_alt):''}</div><div class="body">${p.tag?`<span class="tag mono">${E(p.tag)}</span> `:''}<span class="mono">${fd(p.date)}</span><h3>${E(p.title)}</h3><p>${E(p.excerpt)}</p></div></a>`;
-function view(d,Q){const back=`<a class="mono back" href="./#blog">← ${E(d.blog_back)}</a>`,k=Q.get('post');
- if(k){const p=sorted(d).find(x=>PS(x)===k);
-  if(!p)return `<section class="block"><div class="wrap">${back}<h2 style="margin-top:20px">${E(d.blog_missing)}</h2></div></section>`;
-  document.title=p.title+' — '+d.site_title;
-  const S2=sorted(d),i=S2.indexOf(p),nw=S2[i-1],od=S2[i+1],mins=Math.max(1,Math.round(String(p.body||'').split(/\s+/).length/200));
+const cred=w=>{const L=[];if(w.credit_name)L.push(`${E(w.credit_label)} ${w.credit_link?`<a href="${E(U(w.credit_link))}" target="_blank" rel="noopener">${E(w.credit_name)}</a>`:E(w.credit_name)}`);(w.links||[]).forEach(x=>L.push(`<a href="${E(U(x.url))}" target="_blank" rel="noopener">${E(x.label)}</a>`));return L.length?`<p class="cap">${L.join(' · ')}</p>`:''};
+const WS=d=>(d.works||[]).slice().sort((a,b)=>new Date(b.date)-new Date(a.date));
+const toV=w=>({title:w.title,file:w.video_file,url:w.video_url,poster:w.cover,color:w.color,credit_label:w.credit_label,credit_name:w.credit_name,credit_link:w.credit_link,links:w.links});
+const vgrid=items=>`<div class="vgrid">${items.map(v=>{const y=ytId(v.url),ok=v.file||y||/vimeo\.com\/\d+/.test(v.url||''),k=VIDS.push(v)-1,t=v.poster?img(v.poster,''):v.file?`<video src="${E(U(v.file))}#t=0.1" preload="metadata" muted playsinline></video>`:y?`<img src="https://img.youtube.com/vi/${y}/hqdefault.jpg" alt="" loading="lazy">`:'';return `<button class="vt" ${ok?`data-v="${k}"`:'disabled'}><span class="th ${COL(v.color)}">${t}<span class="play"></span></span><b>${E(v.title)}</b></button>`}).join('')}</div>`;
+const CATS={
+ video:ws=>vgrid(ws.map(toV)),
+ audio:ws=>`<div class="work">${ws.map(w=>`<article class="card"><div class="body"><h3>${E(w.title)}</h3>${w.summary?`<p>${E(w.summary)}</p>`:''}<div class="embed" style="margin-top:14px">${w.embed||(w.audio_file?`<audio controls preload="none" src="${E(U(w.audio_file))}" style="width:100%"></audio>`:'')}</div>${cred(w)}</div></article>`).join('')}</div>`,
+ writing:ws=>`<div class="work">${ws.map(w=>{const href=w.link?E(U(w.link)):w.body?`?work=${encodeURIComponent(PS(w))}`:'',T=href?'a':'article';return `<${T} class="card" ${href?`href="${href}"${w.link?' target="_blank" rel="noopener"':''}`:''}><div class="img ${COL(w.color)}">${w.cover?img(w.cover,w.cover_alt):''}</div><div class="body">${w.credit_name?`<span class="tag mono">${E(w.credit_name)}</span> `:''}<span class="mono">${fd(w.date)}</span><h3>${E(w.title)}</h3><p>${E(w.summary)}</p></div></${T}>`}).join('')}</div>`,
+ pictures:ws=>ws.map(w=>`<div style="margin:0 0 54px"><h3 style="font-size:28px;margin-bottom:6px">${E(w.title)}</h3>${w.summary?`<p class="intro">${E(w.summary)}</p>`:''}<div class="gal">${((w.images&&w.images.length)?w.images:(w.cover?[{image:w.cover,alt:w.cover_alt}]:[])).map(i=>`<figure>${img(i.image,i.alt)}${i.caption?`<figcaption class="cap">${E(i.caption)}</figcaption>`:''}</figure>`).join('')}</div></div>`).join('')};
+const art=(d,p,back,tag,pn)=>{const mins=Math.max(1,Math.round(String(p.body||'').split(/\s+/).length/200));document.title=p.title+' — '+d.site_title;
+ return `<section class="block"><div class="wrap post">${back}<div class="meta mono">${tag?`<span class="tag">${E(tag)}</span>`:''}<span>${fd(p.date)}</span>${p.body?`<span>· ${mins} ${E(d.blog_read)}</span>`:''}</div><h1>${E(p.title)}</h1>${(p.excerpt||p.summary)?`<p class="lede">${E(p.excerpt||p.summary)}</p>`:''}${p.cover?img(p.cover,p.cover_alt):''}<div class="prose">${MD(p.body)}</div>${cred(p)}${pn||''}</div></section>`};
+const pageV=(d,k)=>{const c=(d.categories||[]).find(x=>x.id===k)||{label:k},ws=WS(d).filter(w=>w.category===k);document.title=(c.heading||c.label)+' — '+d.site_title;
+ return `<section class="block"><div class="wrap"><a class="mono back" href="./">← ${E(d.home_label)}</a><h2 style="margin:20px 0 14px;font-size:clamp(34px,5.4vw,60px);font-weight:900;letter-spacing:-.02em">${E(c.heading||c.label)}</h2>${c.intro?`<p class="intro">${E(c.intro)}</p>`:''}${ws.length&&CATS[k]?CATS[k](ws):`<p>${E(d.empty_label)}</p>`}</div></section>`};
+function view(d,Q){
+ const back=`<a class="mono back" href="./#blog">← ${E(d.blog_back)}</a>`,pk=Q.get('page'),wk=Q.get('work'),k=Q.get('post');
+ const miss=b=>`<section class="block"><div class="wrap">${b}<h2 style="margin-top:20px">${E(d.blog_missing)}</h2></div></section>`;
+ if(pk!==null)return pageV(d,pk);
+ if(wk!==null){const w=WS(d).find(x=>PS(x)===wk),c=w&&(d.categories||[]).find(x=>x.id===w.category),b=`<a class="mono back" href="${w?'?page='+encodeURIComponent(w.category):'./'}">← ${E(c?c.label:d.home_label)}</a>`;return w?art(d,w,b,w.credit_name,''):miss(b)}
+ if(k!==null){const S2=sorted(d),p=S2.find(x=>PS(x)===k);if(!p)return miss(back);const i=S2.indexOf(p),nw=S2[i-1],od=S2[i+1];
   const pc=(x,l)=>`<a class="card pc" href="?post=${encodeURIComponent(PS(x))}"><span class="mono">${l}</span><b>${E(x.title)}</b></a>`;
-  return `<section class="block"><div class="wrap post">${back}<div class="meta mono">${p.tag?`<span class="tag">${E(p.tag)}</span>`:''}<span>${fd(p.date)}</span><span>· ${mins} ${E(d.blog_read)}</span></div><h1>${E(p.title)}</h1>${p.excerpt?`<p class="lede">${E(p.excerpt)}</p>`:''}${p.cover?img(p.cover,p.cover_alt):''}<div class="prose">${MD(p.body)}</div><nav class="pn" aria-label="Posts">${nw?pc(nw,'← '+E(d.blog_newer)):'<span></span>'}${od?pc(od,E(d.blog_older)+' →'):'<span></span>'}</nav></div></section>`}
+  return art(d,p,back,p.tag,`<nav class="pn" aria-label="Posts">${nw?pc(nw,'← '+E(d.blog_newer)):'<span></span>'}${od?pc(od,E(d.blog_older)+' →'):'<span></span>'}</nav>`)}
  return `<section class="block"><div class="wrap">${back}<h2 style="margin:20px 0 24px;font-size:clamp(30px,4.6vw,48px);font-weight:900">${E(d.blog_all)}</h2><div class="work">${sorted(d).map(PL).join('')}</div></div></section>`}
 let VIDS=[];
 const ytId=u=>{const m=String(u||'').match(/(?:youtu\.be\/|shorts\/|v=|embed\/)([\w-]{11})/);return m?m[1]:''};
@@ -121,6 +135,7 @@ const R={
  gallery:s=>`<div class="wrap">${s.heading?`<h2>${E(s.heading)}</h2>`:''}<div class="gal">${(s.images||[]).map(i=>`<figure>${img(i.image,i.alt)}${i.caption?`<figcaption class="cap">${E(i.caption)}</figcaption>`:''}</figure>`).join('')}</div></div>`,
  text:s=>`<div class="wrap"><h2>${E(s.heading)}</h2><div class="prose">${MD(s.body)}</div></div>`,
 blog:s=>{const P=sorted(CUR),n=+s.count||3;return `<div class="wrap"><h2>${E(s.heading)}</h2>${s.intro?`<p class="intro">${E(s.intro)}</p>`:''}<div class="work">${P.slice(0,n).map(PL).join('')}</div>${P.length>n?`<p style="margin-top:26px"><a class="btn" href="?posts=all">${E(CUR.blog_all)}</a></p>`:''}</div>`},
+ works:s=>{const k=s.category||'video',c=(CUR.categories||[]).find(x=>x.id===k)||{label:k},ws=WS(CUR).filter(w=>w.category===k),n=+s.count||4;return `<div class="wrap"><h2>${E(s.heading)}</h2>${s.intro?`<p class="intro">${E(s.intro)}</p>`:''}${ws.length&&CATS[k]?CATS[k](ws.slice(0,n)):`<p>${E(CUR.empty_label)}</p>`}<p style="margin-top:26px"><a class="btn" href="?page=${E(k)}">${E(s.button_label||c.label)}</a></p></div>`},
  videos:s=>`<div class="wrap">${s.heading?`<h2>${E(s.heading)}</h2>`:''}${s.intro?`<p class="intro">${E(s.intro)}</p>`:''}<div class="vgrid">${(s.items||[]).map(v=>{const y=ytId(v.url),ok=v.file||y||/vimeo\.com\/\d+/.test(v.url||''),k=VIDS.push(v)-1,t=v.poster?img(v.poster,''):v.file?`<video src="${E(U(v.file))}#t=0.1" preload="metadata" muted playsinline></video>`:y?`<img src="https://img.youtube.com/vi/${y}/hqdefault.jpg" alt="" loading="lazy">`:'';return `<button class="vt" ${ok?`data-v="${k}"`:'disabled'}><span class="th ${COL(v.color)}">${t}<span class="play"></span></span><b>${E(v.title)}</b></button>`}).join('')}</div></div>`,
 };
 const LANGS=['es']; // add 'en' here to bring back the EN/ES toggle
@@ -140,13 +155,13 @@ function openV(v,dlg,lm,b){
 async function load(l){const r=await fetch(`content/site.${l}.json`);if(!r.ok)throw 0;return r.json()}
 async function draw(l){
  let d;try{d=await load(l)}catch(e){try{d=await load(LANGS[0]);l=LANGS[0]}catch(e2){document.getElementById('app').textContent='Content not found.';return}}
- try{const r=await fetch(`content/posts.${l}.json`);if(r.ok)d.posts=(await r.json()).posts||[]}catch(e){}
+ for(const k of ['posts','works']){try{const r=await fetch(`content/generated/${k}.json`);if(r.ok)d[k]=await r.json()}catch(e){}}
  lang=l;try{localStorage.setItem('lang',l)}catch(e){}
  document.documentElement.lang=l;document.title=d.site_title+(d.tagline?' — '+d.tagline:'');
  document.querySelector('meta[name=description]').content=d.description||'';
- VIDS=[];CUR=d;const S=d.sections||[];let nav='';
+ VIDS=[];CUR=d;const S=d.sections||[];let nav=(d.categories||[]).map(c=>`<a href="?page=${E(c.id)}">${E(c.label)}</a>`).join('');
  let body=S.map((s,i)=>{const f=R[s.type];if(!f)return'';const id=slug(s.nav_label||'')||'s'+i;if(s.nav_label)nav+=`<a href="./#${id}">${E(s.nav_label)}</a>`;return `<section class="block" id="${id}">${f(s)}</section>`}).join('');
- const Q=getQ();if(Q.get('post')!==null||Q.get('posts')!==null)body=view(d,Q);
+ const Q=getQ();if(['post','posts','page','work'].some(k=>Q.get(k)!==null))body=view(d,Q);
  document.getElementById('app').innerHTML=`${d.announcement?`<div class="strip mono">${E(d.announcement)}</div>`:''}<header><div class="wrap"><b>${E(d.site_title)}</b><nav class="mono">${nav}</nav>${LANGS.length>1?`<div class="lang mono" role="group" aria-label="Language"><button data-l="en" aria-pressed="${l=='en'}">EN</button><button data-l="es" aria-pressed="${l=='es'}">ES</button></div>`:''}</div></header><main>${body}</main><footer><div class="pen"><div class="wrap"><h2>${E(d.footer_heading)}</h2><nav class="mono">${(d.footer_links||[]).map(x=>`<a href="${E(U(x.url))}">${E(x.label)}</a>`).join('')}</nav></div></div><div class="legal mono">${E(d.legal)}</div></footer><dialog class="lb" id="lb" aria-label="Video"><div class="lb-in"><button class="lb-x" aria-label="${l=='es'?'Cerrar':'Close'}">×</button><div class="lb-m"></div><div class="lb-t"></div><div class="lb-l"></div></div></dialog>`;
  document.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>draw(b.dataset.l));
  const dlg=document.getElementById('lb'),lm=dlg.querySelector('.lb-m');

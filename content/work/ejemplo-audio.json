@@ -1,0 +1,8 @@
+{
+ "title": "Un episodio de podcast",
+ "category": "audio",
+ "date": "2026-10-18T12:00:00.000Z",
+ "summary": "Ejemplo. Pega aquí el código del reproductor (Spotify, Apple Podcasts, SoundCloud...) o sube un MP3.",
+ "credit_label": "Producido para",
+ "color": "pink"
+}
