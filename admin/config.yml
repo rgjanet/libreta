@@ -159,20 +159,6 @@ collections:
                   - {label: Heading, name: heading, widget: string}
                   - {label: Text, name: body, widget: markdown}
                   - {label: Menu label, name: nav_label, widget: string, required: false}
-          - label: Blog posts
-            name: posts
-            widget: list
-            hint: Newest first on the site. Each language has its own posts.
-            fields:
-              - {label: Title, name: title, widget: string}
-              - {label: Web address ending (lowercase, dashes; empty = made from title), name: slug, widget: string, required: false}
-              - {label: Date, name: date, widget: datetime}
-              - {label: Tag, name: tag, widget: string, required: false}
-              - {label: Cover image, name: cover, widget: image, required: false}
-              - {label: Cover image description, name: cover_alt, widget: string, required: false}
-              - {label: Card colour (when no cover), name: color, widget: select, default: pink, options: [pink, gold, aqua, red, olive, mint, paper]}
-              - {label: Short summary, name: excerpt, widget: text}
-              - {label: Post, name: body, widget: markdown}
           - {label: Blog - "All posts" button, name: blog_all, widget: string}
           - {label: Blog - "Back to blog" link, name: blog_back, widget: string}
           - {label: Blog - "min read" label, name: blog_read, widget: string}
@@ -187,3 +173,29 @@ collections:
               - {label: Label, name: label, widget: string}
               - {label: URL, name: url, widget: string}
           - {label: Legal line, name: legal, widget: string}
+  - name: blog
+    label: Blog
+    files:
+      - name: posts
+        label: Blog posts
+        file: content/posts.es.json
+        format: json
+        fields:
+          - label: Posts
+            name: posts
+            widget: list
+            label_singular: post
+            summary: "{{fields.title}}"
+            add_to_top: true
+            collapsed: true
+            hint: Click "Add post" to write a new one. The newest date shows first on the site.
+            fields:
+              - {label: Title, name: title, widget: string}
+              - {label: Web address ending (lowercase, dashes; empty = made from title), name: slug, widget: string, required: false}
+              - {label: Date, name: date, widget: datetime}
+              - {label: Tag, name: tag, widget: string, required: false}
+              - {label: Cover image, name: cover, widget: image, required: false}
+              - {label: Cover image description, name: cover_alt, widget: string, required: false}
+              - {label: Card colour (when no cover), name: color, widget: select, default: pink, options: [pink, gold, aqua, red, olive, mint, paper]}
+              - {label: Short summary, name: excerpt, widget: text}
+              - {label: Post, name: body, widget: markdown}

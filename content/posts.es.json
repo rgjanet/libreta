@@ -1,0 +1,31 @@
+{
+ "posts": [
+  {
+   "title": "Una primera página del cuaderno",
+   "slug": "first-page",
+   "tag": "Notas",
+   "date": "2026-10-20T12:00:00.000Z",
+   "excerpt": "Esta es una entrada de ejemplo. Sustitúyela desde el CMS.",
+   "body": "Esta es una entrada de ejemplo para que veas cómo se organiza una página. Sustitúyela desde el CMS.\n\n## Un título abre una parte nueva\n\nEscribe en **Markdown**: negritas, *cursivas*, [enlaces](#) y listas.\n\n> Una cita destaca en el margen, como una nota en un diario.\n\n- Añade imágenes, con una descripción breve\n- Pega un video o un reproductor de podcast\n- Sigue todo lo que quieras\n\n---\n\n### Un título más pequeño\n\nLas entradas aparecen de la más nueva a la más antigua, con la siguiente y la anterior enlazadas al final.",
+   "color": "pink"
+  },
+  {
+   "title": "Lo que leo este mes",
+   "slug": "reading-this-month",
+   "tag": "Lectura",
+   "date": "2026-10-12T12:00:00.000Z",
+   "excerpt": "Una entrada de ejemplo sobre libros y librerías.",
+   "body": "Otra entrada de ejemplo. Las entradas se muestran de la más nueva a la más antigua.",
+   "color": "gold"
+  },
+  {
+   "title": "Detrás de un proyecto de Shopify",
+   "slug": "behind-a-shopify-build",
+   "tag": "Construyo",
+   "date": "2026-10-03T12:00:00.000Z",
+   "excerpt": "Una entrada de ejemplo sobre un proyecto reciente.",
+   "body": "Una tercera entrada de ejemplo.",
+   "color": "aqua"
+  }
+ ]
+}

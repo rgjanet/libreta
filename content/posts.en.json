@@ -1,0 +1,31 @@
+{
+ "posts": [
+  {
+   "title": "A first page from the notebook",
+   "slug": "first-page",
+   "tag": "Notes",
+   "date": "2026-10-20T12:00:00.000Z",
+   "excerpt": "This is a sample post. Replace it with your own from the CMS.",
+   "body": "This is a sample post, so you can see how a page is laid out. Replace it from the CMS.\n\n## A heading starts a new part\n\nWrite in **Markdown**: bold, *italics*, [links](#), and lists.\n\n> A quote stands out in the margin, like a note in a journal.\n\n- Add images, with a short description\n- Paste in a video or podcast player\n- Keep going as long as you like\n\n---\n\n### A smaller heading\n\nPosts appear newest first, with the next and previous post linked at the bottom.",
+   "color": "pink"
+  },
+  {
+   "title": "What I’m reading this month",
+   "slug": "reading-this-month",
+   "tag": "Reading",
+   "date": "2026-10-12T12:00:00.000Z",
+   "excerpt": "A sample post about books and bookshops.",
+   "body": "Another sample post. Posts appear newest first.",
+   "color": "gold"
+  },
+  {
+   "title": "Behind a Shopify build",
+   "slug": "behind-a-shopify-build",
+   "tag": "Build",
+   "date": "2026-10-03T12:00:00.000Z",
+   "excerpt": "A sample post about a recent project.",
+   "body": "A third sample post.",
+   "color": "aqua"
+  }
+ ]
+}

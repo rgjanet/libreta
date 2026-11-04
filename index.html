@@ -140,6 +140,7 @@ function openV(v,dlg,lm,b){
 async function load(l){const r=await fetch(`content/site.${l}.json`);if(!r.ok)throw 0;return r.json()}
 async function draw(l){
  let d;try{d=await load(l)}catch(e){try{d=await load(LANGS[0]);l=LANGS[0]}catch(e2){document.getElementById('app').textContent='Content not found.';return}}
+ try{const r=await fetch(`content/posts.${l}.json`);if(r.ok)d.posts=(await r.json()).posts||[]}catch(e){}
  lang=l;try{localStorage.setItem('lang',l)}catch(e){}
  document.documentElement.lang=l;document.title=d.site_title+(d.tagline?' — '+d.tagline:'');
  document.querySelector('meta[name=description]').content=d.description||'';
