@@ -127,11 +127,11 @@
   ],
   "home_label": "Inicio",
   "empty_label": "Pronto habrá trabajos aquí.",
-  "footer_heading": "pen pals.",
+  "footer_heading": "Janet Rodríguez",
   "footer_links": [
     {
       "label": "Vivir del Cuento",
-      "url": "#"
+      "url": "https://vivirdelcuentopr.substack.com/"
     },
     {
       "label": "La Mala Suerte Editorial",
@@ -139,7 +139,7 @@
     },
     {
       "label": "Correo",
-      "url": "mailto:hello@example.com"
+      "url": "mailto:janet@rgjanet.com"
     }
   ],
   "legal": "© 2026 Janet Rodríguez · Hecho en Puerto Rico"
