@@ -1,0 +1,46 @@
+{
+  "title": "Las Marías hacen libros",
+  "category": "pictures",
+  "date": "2021-03-06T01:17:00",
+  "cover": "/assets/uploads/LasMarias1.png",
+  "cover_alt": "",
+  "summary": "",
+  "video_file": "",
+  "video_url": "",
+  "embed": "",
+  "audio_file": "",
+  "images": [
+    {
+      "image": "/assets/uploads/LasMarias1.png",
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "image": "/assets/uploads/LasMarias2.png",
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "image": "/assets/uploads/LasMarias3.png",
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "image": "/assets/uploads/LasMarias4.png",
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "image": "/assets/uploads/LasMarias5.png",
+      "alt": "",
+      "caption": ""
+    }
+  ],
+  "link": "",
+  "body": "",
+  "credit_label": "",
+  "credit_name": "",
+  "credit_link": "",
+  "links": [],
+  "color": "aqua"
+}
