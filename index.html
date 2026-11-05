@@ -107,15 +107,17 @@ const PL=p=>`<a class="card" href="?post=${encodeURIComponent(PS(p))}"><div clas
 const cred=w=>{const L=[];if(w.credit_name)L.push(`${E(w.credit_label)} ${w.credit_link?`<a href="${E(U(w.credit_link))}" target="_blank" rel="noopener">${E(w.credit_name)}</a>`:E(w.credit_name)}`);(w.links||[]).forEach(x=>L.push(`<a href="${E(U(x.url))}" target="_blank" rel="noopener">${E(x.label)}</a>`));return L.length?`<p class="cap">${L.join(' · ')}</p>`:''};
 const WS=d=>(d.works||[]).slice().sort((a,b)=>new Date(b.date)-new Date(a.date));
 const toV=w=>({title:w.title,file:w.video_file,url:w.video_url,poster:w.cover,color:w.color,credit_label:w.credit_label,credit_name:w.credit_name,credit_link:w.credit_link,links:w.links});
-const vgrid=items=>`<div class="vgrid">${items.map(v=>{const y=ytId(v.url),ok=v.file||y||/vimeo\.com\/\d+/.test(v.url||''),k=VIDS.push(v)-1,t=v.poster?img(v.poster,''):v.file?`<video src="${E(U(v.file))}#t=0.1" preload="metadata" muted playsinline></video>`:y?`<img src="https://img.youtube.com/vi/${y}/hqdefault.jpg" alt="" loading="lazy">`:'';return `<button class="vt" ${ok?`data-v="${k}"`:'disabled'}><span class="th ${COL(v.color)}">${t}<span class="play"></span></span><b>${E(v.title)}</b></button>`}).join('')}</div>`;
+const vgrid=items=>`<div class="vgrid">${items.map(v=>{v=Object.assign({},v,{file:vsrc(v.file,v.url)});const y=ytId(v.url),ia=iaId(v.url),ok=v.file||y||ia||/vimeo\.com\/\d+/.test(v.url||''),k=VIDS.push(v)-1,t=v.poster?img(v.poster,''):v.file?`<video src="${E(U(v.file))}#t=0.1" preload="metadata" muted playsinline></video>`:y?`<img src="https://img.youtube.com/vi/${y}/hqdefault.jpg" alt="" loading="lazy">`:ia?`<img src="https://archive.org/services/img/${E(ia)}" alt="" loading="lazy">`:'';return `<button class="vt" ${ok?`data-v="${k}"`:'disabled'}><span class="th ${COL(v.color)}">${t}<span class="play"></span></span><b>${E(v.title)}</b></button>`}).join('')}</div>`;
 const CATS={
  video:ws=>vgrid(ws.map(toV)),
  audio:ws=>`<div class="work">${ws.map(w=>`<article class="card"><div class="body"><h3>${E(w.title)}</h3>${w.summary?`<p>${E(w.summary)}</p>`:''}<div class="embed" style="margin-top:14px">${w.embed||(w.audio_file?`<audio controls preload="none" src="${E(U(w.audio_file))}" style="width:100%"></audio>`:'')}</div>${cred(w)}</div></article>`).join('')}</div>`,
  writing:ws=>`<div class="work">${ws.map(w=>{const href=w.link?E(U(w.link)):w.body?`?work=${encodeURIComponent(PS(w))}`:'',T=href?'a':'article';return `<${T} class="card" ${href?`href="${href}"${w.link?' target="_blank" rel="noopener"':''}`:''}><div class="img ${COL(w.color)}">${w.cover?img(w.cover,w.cover_alt):''}</div><div class="body">${w.credit_name?`<span class="tag mono">${E(w.credit_name)}</span> `:''}<span class="mono">${fd(w.date)}</span><h3>${E(w.title)}</h3><p>${E(w.summary)}</p></div></${T}>`}).join('')}</div>`,
  pictures:ws=>ws.map(w=>`<div style="margin:0 0 54px"><h3 style="font-size:28px;margin-bottom:6px">${E(w.title)}</h3>${w.summary?`<p class="intro">${E(w.summary)}</p>`:''}<div class="gal">${((w.images&&w.images.length)?w.images:(w.cover?[{image:w.cover,alt:w.cover_alt}]:[])).map(i=>`<figure>${img(i.image,i.alt)}${i.caption?`<figcaption class="cap">${E(i.caption)}</figcaption>`:''}</figure>`).join('')}</div></div>`).join('')};
 const vplayer=p=>{const y=ytId(p.video_url),vm=String(p.video_url||'').match(/vimeo\.com\/(\d+)/),cap=p.video_caption?`<figcaption class="cap">${E(p.video_caption)}</figcaption>`:'';let m='';
- if(p.video_file)m=`<video class="pv" src="${E(U(p.video_file))}" controls playsinline preload="metadata"${p.cover?` poster="${E(U(p.cover))}"`:''}></video>`;
+ const vs=vsrc(p.video_file,p.video_url),ia=iaId(p.video_url);
+ if(vs)m=`<video class="pv" src="${E(U(vs))}" controls playsinline preload="metadata"${p.cover?` poster="${E(U(p.cover))}"`:''}></video>`;
  else if(y)m=`<div class="pf${/shorts\//.test(p.video_url)?' v':''}"><iframe src="https://www.youtube.com/embed/${y}?rel=0" title="${E(p.title)}" allow="encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>`;
+ else if(ia)m=`<div class="pf" data-ia="${E(ia)}"><iframe src="https://archive.org/embed/${E(ia)}" title="${E(p.title)}" allowfullscreen loading="lazy"></iframe></div>`;
  else if(vm)m=`<div class="pf"><iframe src="https://player.vimeo.com/video/${vm[1]}" title="${E(p.title)}" allow="fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>`;
  return m?`<figure class="pvw">${m}${cap}</figure>`:''};
 const art=(d,p,back,tag,pn)=>{const mins=Math.max(1,Math.round(String(p.body||'').split(/\s+/).length/200));document.title=p.title+' — '+d.site_title;
@@ -132,7 +134,10 @@ function view(d,Q){
   return art(d,p,back,p.tag,`<nav class="pn" aria-label="Posts">${nw?pc(nw,'← '+E(d.blog_newer)):'<span></span>'}${od?pc(od,E(d.blog_older)+' →'):'<span></span>'}</nav>`)}
  return `<section class="block"><div class="wrap">${back}<h2 style="margin:20px 0 24px;font-size:clamp(30px,4.6vw,48px);font-weight:900">${E(d.blog_all)}</h2><div class="work">${sorted(d).map(PL).join('')}</div></div></section>`}
 let VIDS=[];
-const ytId=u=>{const m=String(u||'').match(/(?:youtu\.be\/|shorts\/|v=|embed\/)([\w-]{11})/);return m?m[1]:''};
+const ytId=u=>{u=String(u||'');if(!/youtu\.?be/.test(u))return'';const m=u.match(/(?:youtu\.be\/|shorts\/|v=|embed\/)([\w-]{11})/);return m?m[1]:''};
+const vsrc=(f,u)=>f||(/\.(mp4|webm|m4v|mov|ogv)([?#].*)?$/i.test(u||'')?u:'');
+const iaId=u=>{const m=String(u||'').match(/archive\.org\/(?:details|embed)\/([^\/?#]+)/);return m?m[1]:''};
+const iaFile=id=>fetch(`https://archive.org/metadata/${id}`).then(r=>r.json()).then(m=>{const f=(m.files||[]).filter(x=>/\.mp4$/i.test(x.name)).sort((a,c)=>(/h\.264/i.test(c.format||'')?1:0)-(/h\.264/i.test(a.format||'')?1:0))[0];return f?`https://archive.org/download/${id}/${f.name.split('/').map(encodeURIComponent).join('/')}`:null}).catch(()=>null);
 const R={
  hero:s=>`<div class="wrap hero"><div><h1>${E(s.headline)}</h1><p>${E(s.text)}</p>${btn(s.button_label,s.button_link)}</div>${s.image?`<div>${img(s.image,s.image_alt)}</div>`:`<div class="shapes" aria-hidden="true"><svg class="art" viewBox="0 0 480 440"><circle cx="175" cy="150" r="108" fill="#FBB94B"/><circle cx="395" cy="95" r="52" fill="#FFBBA6"/><circle cx="378" cy="275" r="88" fill="#97AA6A"/><path d="M270 40V100M240 70H300M249 49L291 91M291 49L249 91" stroke="#A4CCC4" stroke-width="12" stroke-linecap="round" fill="none"/><path d="M30 365C70 270 125 270 160 335S250 410 290 330 365 290 410 380" fill="none" stroke="#EE583F" stroke-width="22" stroke-linecap="round"/></svg></div>`}</div>`,
  services:s=>`<div class="wrap">${s.heading?`<h2>${E(s.heading)}</h2>`:''}<div class="tiles">${(s.tiles||[]).map(t=>`<div class="tile ${COL(t.color)}"><h3>${E(t.title)}</h3><p>${E(t.text)}</p>${t.image?img(t.image,''):ICON[t.icon]?`<svg viewBox="0 0 76 76" aria-hidden="true">${ICON[t.icon]}</svg>`:''}</div>`).join('')}</div></div>`,
@@ -150,10 +155,12 @@ const LANGS=['es']; // add 'en' here to bring back the EN/ES toggle
 let lang=LANGS[0];try{lang=new URLSearchParams(location.search).get('lang')||localStorage.getItem('lang')||(navigator.language||'en').slice(0,2)}catch(e){}
 if(!LANGS.includes(lang))lang=LANGS[0];
 function openV(v,dlg,lm,b){
- const y=ytId(v.url),vm=String(v.url||'').match(/vimeo\.com\/(\d+)/);
- if(v.file){lm.innerHTML=`<video src="${E(U(v.file))}" ${v.poster?`poster="${E(U(v.poster))}"`:''} controls autoplay playsinline></video>`;const el=lm.firstChild;el.onloadedmetadata=()=>{if(el.videoWidth)lm.style.aspectRatio=el.videoWidth+'/'+el.videoHeight}}
+ const y=ytId(v.url),vm=String(v.url||'').match(/vimeo\.com\/(\d+)/),ia=iaId(v.url);
+ const play=src=>{lm.innerHTML=`<video src="${E(src)}" ${v.poster?`poster="${E(U(v.poster))}"`:''} controls autoplay playsinline></video>`;const el=lm.firstChild;el.onloadedmetadata=()=>{if(el.videoWidth)lm.style.aspectRatio=el.videoWidth+'/'+el.videoHeight}};
+ if(v.file)play(U(v.file));
  else if(y)lm.innerHTML=`<iframe src="https://www.youtube.com/embed/${y}?autoplay=1&playsinline=1&rel=0" title="${E(v.title)}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
  else if(vm)lm.innerHTML=`<iframe src="https://player.vimeo.com/video/${vm[1]}?autoplay=1" title="${E(v.title)}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+ else if(ia){lm.innerHTML=`<iframe src="https://archive.org/embed/${E(ia)}" title="${E(v.title)}" allowfullscreen></iframe>`;iaFile(ia).then(s=>{if(s&&dlg.open)play(s)})}
  else return;
  dlg.querySelector('.lb-t').textContent=v.title||'';
  const L=[];if(v.credit_name)L.push(`${E(v.credit_label)} ${v.credit_link?`<a href="${E(U(v.credit_link))}" target="_blank" rel="noopener">${E(v.credit_name)}</a>`:E(v.credit_name)}`);
@@ -172,6 +179,7 @@ async function draw(l){
  const Q=getQ();if(['post','posts','page','work'].some(k=>Q.get(k)!==null))body=view(d,Q);
  document.getElementById('app').innerHTML=`${d.announcement?`<div class="strip mono">${E(d.announcement)}</div>`:''}<header><div class="wrap"><b>${E(d.site_title)}</b><nav class="mono">${nav}</nav>${LANGS.length>1?`<div class="lang mono" role="group" aria-label="Language"><button data-l="en" aria-pressed="${l=='en'}">EN</button><button data-l="es" aria-pressed="${l=='es'}">ES</button></div>`:''}</div></header><main>${body}</main><footer><div class="pen"><div class="wrap"><h2>${E(d.footer_heading)}</h2><nav class="mono">${(d.footer_links||[]).map(x=>`<a href="${E(U(x.url))}">${E(x.label)}</a>`).join('')}</nav></div></div><div class="legal mono">${E(d.legal)}</div></footer><dialog class="lb" id="lb" aria-label="Video"><div class="lb-in"><button class="lb-x" aria-label="${l=='es'?'Cerrar':'Close'}">×</button><div class="lb-m"></div><div class="lb-t"></div><div class="lb-l"></div></div></dialog>`;
  document.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>draw(b.dataset.l));
+ document.querySelectorAll('[data-ia]').forEach(el=>iaFile(el.dataset.ia).then(s=>{if(s&&el.isConnected)el.outerHTML=`<video class="pv" src="${E(s)}" controls playsinline preload="metadata"></video>`}));
  const dlg=document.getElementById('lb'),lm=dlg.querySelector('.lb-m');
  document.querySelectorAll('.vt[data-v]').forEach(b=>b.onclick=()=>openV(VIDS[b.dataset.v],dlg,lm,b));
  dlg.onclick=e=>{if(!e.target.closest('.lb-m,.lb-t,.lb-l'))dlg.close()};
