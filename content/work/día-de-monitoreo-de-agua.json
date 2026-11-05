@@ -1,0 +1,41 @@
+{
+  "title": "Día de Monitoreo de Agua",
+  "category": "pictures",
+  "date": "2021-03-07T01:32:00",
+  "cover": "/assets/uploads/MonitoreoAgua1.png",
+  "cover_alt": "",
+  "summary": "",
+  "video_file": "",
+  "video_url": "",
+  "embed": "",
+  "audio_file": "",
+  "images": [
+    {
+      "image": "/assets/uploads/MonitoreoAgua1.png",
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "image": "/assets/uploads/Monitoreo3.png",
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "image": "/assets/uploads/Monitoreo4.png",
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "image": "/assets/uploads/MonitoreoAgua2.png",
+      "alt": "",
+      "caption": ""
+    }
+  ],
+  "link": "",
+  "body": "",
+  "credit_label": "",
+  "credit_name": "",
+  "credit_link": "",
+  "links": [],
+  "color": "aqua"
+}
