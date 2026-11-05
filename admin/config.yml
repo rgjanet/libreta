@@ -186,6 +186,7 @@ collections:
       - {label: "Video: upload an MP4 (ideally under 25 MB)", name: video_file, widget: file, required: false, choose_url: false}
       - {label: "Video: or paste a YouTube or Vimeo link", name: video_url, widget: string, required: false}
       - {label: Video caption, name: video_caption, widget: string, required: false}
+      - {label: Video position, name: video_position, widget: select, default: before, options: [{label: Before the text, value: before}, {label: After the text, value: after}]}
       - {label: Card colour (when no cover), name: color, widget: select, default: pink, options: [pink, gold, aqua, red, olive, mint, paper]}
       - {label: Short summary, name: excerpt, widget: text}
       - {label: Post, name: body, widget: markdown}
