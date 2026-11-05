@@ -184,7 +184,7 @@ collections:
       - {label: Cover image, name: cover, widget: image, required: false}
       - {label: Cover image description, name: cover_alt, widget: string, required: false}
       - {label: "Video: upload an MP4 (ideally under 25 MB)", name: video_file, widget: file, required: false, choose_url: false}
-      - {label: "Video: or paste a YouTube or Vimeo link", name: video_url, widget: string, required: false}
+      - {label: "Video: or paste a link (YouTube, Vimeo, Archive.org or a direct .mp4)", name: video_url, widget: string, required: false}
       - {label: Video caption, name: video_caption, widget: string, required: false}
       - {label: Video position, name: video_position, widget: select, default: before, options: [{label: Before the text, value: before}, {label: After the text, value: after}]}
       - {label: Card colour (when no cover), name: color, widget: select, default: pink, options: [pink, gold, aqua, red, olive, mint, paper]}
@@ -205,7 +205,7 @@ collections:
       - {label: Cover image description, name: cover_alt, widget: string, required: false}
       - {label: Short summary, name: summary, widget: text, required: false}
       - {label: "VIDEO: upload an MP4 (ideally under 25 MB)", name: video_file, widget: file, required: false, choose_url: false}
-      - {label: "VIDEO: or paste a YouTube or Vimeo link", name: video_url, widget: string, required: false}
+      - {label: "VIDEO: or paste a link (YouTube, Vimeo, Archive.org or a direct .mp4)", name: video_url, widget: string, required: false}
       - {label: "AUDIO: paste the player code (Spotify, Apple Podcasts, SoundCloud)", name: embed, widget: text, required: false}
       - {label: "AUDIO: or upload an MP3", name: audio_file, widget: file, required: false, choose_url: false}
       - label: "PICTURES: images"
