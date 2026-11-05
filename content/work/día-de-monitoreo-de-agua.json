@@ -11,6 +11,11 @@
   "audio_file": "",
   "images": [
     {
+      "image": "/assets/uploads/MonitoreoAgua2.png",
+      "alt": "",
+      "caption": ""
+    },
+    {
       "image": "/assets/uploads/MonitoreoAgua1.png",
       "alt": "",
       "caption": ""
@@ -22,11 +27,6 @@
     },
     {
       "image": "/assets/uploads/Monitoreo4.png",
-      "alt": "",
-      "caption": ""
-    },
-    {
-      "image": "/assets/uploads/MonitoreoAgua2.png",
       "alt": "",
       "caption": ""
     }
