@@ -2,7 +2,7 @@
   "site_title": "Janet Rodríguez",
   "tagline": "Escritora, periodista, creadora de contenido y editora de libros",
   "description": "Escritora, periodista, creadora de contenido y editora de libros.",
-  "announcement": "¿Tienes un proyecto en mente y necesitas consejos? Hablemos 📧",
+  "announcement": "¿Tienes un proyecto en mente? Hablemos 📧",
   "sections": [
     {
       "type": "hero",
@@ -54,7 +54,7 @@
       "button_label": "Ver todos los videos",
       "nav_label": "",
       "heading": "Videos",
-      "intro": "Videos de proyectos propios y de clientes. Toca uno para verlo.",
+      "intro": "Videos de proyectos propios y de clientes",
       "category": "video",
       "count": 4
     },
