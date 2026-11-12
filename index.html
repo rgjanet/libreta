@@ -83,6 +83,16 @@ dialog.lb{border:0;padding:0;background:transparent;max-width:100vw;max-height:1
 @media(max-width:780px){header nav{flex-wrap:nowrap;gap:20px}header nav a{flex:none}.block{padding-top:44px}main>.block:first-child{padding-top:8px}.hero{padding-top:0;gap:8px}.card .embed{margin-top:10px}}
 .card .embed iframe{border:0;background:transparent;border-radius:12px;display:block}
 .card .embed iframe[src*="spotify.com"]{height:152px}
+
+.vgrid.car{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;padding:2px 2px 4px;margin:0 -2px;overscroll-behavior-x:contain}
+.vgrid.car::-webkit-scrollbar{display:none}
+.vgrid.car .vt{flex:0 0 clamp(190px,23vw,250px);scroll-snap-align:start;grid-row:auto;margin:0}
+.vnav{display:flex;gap:10px;justify-content:flex-end;margin-top:18px}
+.vnav button{font:600 18px 'IBM Plex Mono',monospace;width:46px;height:46px;border-radius:50%;border:2px solid var(--ink);background:var(--mint);color:var(--ink);cursor:pointer}
+.vnav button:hover:not(:disabled){background:var(--gold)}.vnav button:disabled{opacity:.35;cursor:default}
+.vcar.noscroll .vnav{display:none}
+@media(max-width:780px){.vgrid.car{grid-template-columns:none;gap:14px}.vgrid.car .vt{flex-basis:62vw}.vnav button{width:42px;height:42px}}
+@media(prefers-reduced-motion:reduce){.vgrid.car{scroll-behavior:auto}}
 .c-pink{background:var(--pink)}.c-gold{background:var(--gold)}.c-aqua{background:var(--aqua)}.c-red{background:var(--red);color:var(--paper)}.c-olive{background:var(--olive)}.c-mint{background:var(--mint)}.c-paper{background:var(--paper)}
 @media(max-width:780px){.hero,.about,.contact,.feat{grid-template-columns:1fr}.art{max-width:330px;margin:0 auto}header .wrap{flex-wrap:wrap;gap:8px 16px}header nav{order:3;flex:1 0 100%;overflow-x:auto;white-space:nowrap;gap:22px;padding-bottom:4px}header nav a{padding:8px 0}.vgrid{grid-template-columns:1fr 1fr;gap:14px}.feat{padding:22px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
@@ -112,7 +122,8 @@ const PL=p=>`<a class="card" href="?post=${encodeURIComponent(PS(p))}"><div clas
 const cred=w=>{const L=[];if(w.credit_name)L.push(`${E(w.credit_label)} ${w.credit_link?`<a href="${E(U(w.credit_link))}" target="_blank" rel="noopener">${E(w.credit_name)}</a>`:E(w.credit_name)}`);(w.links||[]).forEach(x=>L.push(`<a href="${E(U(x.url))}" target="_blank" rel="noopener">${E(x.label)}</a>`));return L.length?`<p class="cap">${L.join(' · ')}</p>`:''};
 const WS=d=>(d.works||[]).slice().sort((a,b)=>new Date(b.date)-new Date(a.date));
 const toV=w=>({title:w.title,file:w.video_file,url:w.video_url,poster:w.cover,color:w.color,credit_label:w.credit_label,credit_name:w.credit_name,credit_link:w.credit_link,links:w.links});
-const vgrid=items=>`<div class="vgrid">${items.map(v=>{v=Object.assign({},v,{file:vsrc(v.file,v.url)});const y=ytId(v.url),ia=iaId(v.url),ok=v.file||y||ia||/vimeo\.com\/\d+/.test(v.url||''),k=VIDS.push(v)-1,t=v.poster?img(v.poster,''):v.file?`<video src="${E(U(v.file))}#t=0.1" preload="metadata" muted playsinline></video>`:y?`<img src="https://img.youtube.com/vi/${y}/hqdefault.jpg" alt="" loading="lazy">`:ia?`<img src="https://archive.org/services/img/${E(ia)}" alt="" loading="lazy">`:'';return `<button class="vt" ${ok?`data-v="${k}"`:'disabled'}><span class="th ${COL(v.color)}"${v.file?` data-src="${E(U(v.file))}"`:ia?` data-ia="${E(ia)}"`:''}>${t}<span class="play"></span></span><b>${E(v.title)}</b>${v.credit_name?`<span class="cl">${E(v.credit_name)}</span>`:''}</button>`}).join('')}</div>`;
+const vgrid=(items,car)=>`<div class="vgrid${car?' car':''}">${items.map(v=>{v=Object.assign({},v,{file:vsrc(v.file,v.url)});const y=ytId(v.url),ia=iaId(v.url),ok=v.file||y||ia||/vimeo\.com\/\d+/.test(v.url||''),k=VIDS.push(v)-1,t=v.poster?img(v.poster,''):v.file?`<video src="${E(U(v.file))}#t=0.1" preload="metadata" muted playsinline></video>`:y?`<img src="https://img.youtube.com/vi/${y}/hqdefault.jpg" alt="" loading="lazy">`:ia?`<img src="https://archive.org/services/img/${E(ia)}" alt="" loading="lazy">`:'';return `<button class="vt" ${ok?`data-v="${k}"`:'disabled'}><span class="th ${COL(v.color)}"${v.file?` data-src="${E(U(v.file))}"`:ia?` data-ia="${E(ia)}"`:''}>${t}<span class="play"></span></span><b>${E(v.title)}</b>${v.credit_name?`<span class="cl">${E(v.credit_name)}</span>`:''}</button>`}).join('')}</div>`;
+const vcar=items=>`<div class="vcar">${vgrid(items,1)}<div class="vnav"><button type="button" class="vp" aria-label="Anterior">←</button><button type="button" class="vn" aria-label="Siguiente">→</button></div></div>`;
 const CATS={
  video:ws=>vgrid(ws.map(toV)),
  audio:ws=>`<div class="work">${ws.map(w=>`<article class="card"><div class="body"><h3>${E(w.title)}</h3>${w.summary?`<p>${E(w.summary)}</p>`:''}<div class="embed" style="margin-top:14px">${w.embed||(w.audio_file?`<audio controls preload="none" src="${E(U(w.audio_file))}" style="width:100%"></audio>`:'')}</div>${cred(w)}</div></article>`).join('')}</div>`,
@@ -153,7 +164,7 @@ const R={
  gallery:s=>`<div class="wrap">${s.heading?`<h2>${E(s.heading)}</h2>`:''}<div class="gal">${(s.images||[]).map(i=>`<figure>${img(i.image,i.alt)}${i.caption?`<figcaption class="cap">${E(i.caption)}</figcaption>`:''}</figure>`).join('')}</div></div>`,
  text:s=>`<div class="wrap"><h2>${E(s.heading)}</h2><div class="prose">${MD(s.body)}</div></div>`,
 blog:s=>{const P=sorted(CUR),n=+s.count||3;return `<div class="wrap"><h2>${E(s.heading)}</h2>${s.intro?`<p class="intro">${E(s.intro)}</p>`:''}<div class="work">${P.slice(0,n).map(PL).join('')}</div>${P.length>n?`<p style="margin-top:26px"><a class="btn" href="?posts=all">${E(CUR.blog_all)}</a></p>`:''}</div>`},
- works:s=>{const k=s.category||'video',c=(CUR.categories||[]).find(x=>x.id===k)||{label:k},ws=WS(CUR).filter(w=>w.category===k),n=+s.count||4;return `<div class="wrap"><h2>${E(s.heading)}</h2>${s.intro?`<p class="intro">${E(s.intro)}</p>`:''}${ws.length&&CATS[k]?CATS[k](ws.slice(0,n)):`<p>${E(CUR.empty_label)}</p>`}<p style="margin-top:26px"><a class="btn" href="?page=${E(k)}">${E(s.button_label||c.label)}</a></p></div>`},
+ works:s=>{const k=s.category||'video',c=(CUR.categories||[]).find(x=>x.id===k)||{label:k},ws=WS(CUR).filter(w=>w.category===k),n=+s.count||4;return `<div class="wrap"><h2>${E(s.heading)}</h2>${s.intro?`<p class="intro">${E(s.intro)}</p>`:''}${ws.length&&CATS[k]?(k==='video'?vcar(ws.slice(0,n).map(toV)):CATS[k](ws.slice(0,n))):`<p>${E(CUR.empty_label)}</p>`}<p style="margin-top:26px"><a class="btn" href="?page=${E(k)}">${E(s.button_label||c.label)}</a></p></div>`},
  videos:s=>`<div class="wrap">${s.heading?`<h2>${E(s.heading)}</h2>`:''}${s.intro?`<p class="intro">${E(s.intro)}</p>`:''}<div class="vgrid">${(s.items||[]).map(v=>{const y=ytId(v.url),ok=v.file||y||/vimeo\.com\/\d+/.test(v.url||''),k=VIDS.push(v)-1,t=v.poster?img(v.poster,''):v.file?`<video src="${E(U(v.file))}#t=0.1" preload="metadata" muted playsinline></video>`:y?`<img src="https://img.youtube.com/vi/${y}/hqdefault.jpg" alt="" loading="lazy">`:'';return `<button class="vt" ${ok?`data-v="${k}"`:'disabled'}><span class="th ${COL(v.color)}">${t}<span class="play"></span></span><b>${E(v.title)}</b></button>`}).join('')}</div></div>`,
 };
 const LANGS=['es']; // add 'en' here to bring back the EN/ES toggle
@@ -195,6 +206,11 @@ async function draw(l){
     if(el)el.play().catch(()=>{})
    }else if(el)el.pause()}),{threshold:.4});
   document.querySelectorAll('.th[data-src],.th[data-ia]').forEach(t=>io.observe(t))}
+ document.querySelectorAll('.vcar').forEach(c=>{const t=c.querySelector('.vgrid'),p=c.querySelector('.vp'),n=c.querySelector('.vn');
+  const st=()=>{const m=t.scrollWidth-t.clientWidth;c.classList.toggle('noscroll',m<4);p.disabled=t.scrollLeft<4;n.disabled=t.scrollLeft>m-4};
+  const step=()=>{const v=t.querySelector('.vt');return (v?v.getBoundingClientRect().width:200)+22};
+  p.onclick=()=>t.scrollBy({left:-step()*(innerWidth>780?2:1)});n.onclick=()=>t.scrollBy({left:step()*(innerWidth>780?2:1)});
+  t.addEventListener('scroll',st,{passive:true});addEventListener('resize',st);setTimeout(st,60);setTimeout(st,800)});
  const dlg=document.getElementById('lb'),lm=dlg.querySelector('.lb-m');
  document.querySelectorAll('.vt[data-v]').forEach(b=>b.onclick=()=>openV(VIDS[b.dataset.v],dlg,lm,b));
  dlg.onclick=e=>{if(!e.target.closest('.lb-m,.lb-t,.lb-l'))dlg.close()};
