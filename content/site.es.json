@@ -53,7 +53,7 @@
       "type": "works",
       "button_label": "Ver todos los videos",
       "nav_label": "",
-      "heading": "Video",
+      "heading": "Videos",
       "intro": "Videos de proyectos propios y de clientes. Toca uno para verlo.",
       "category": "video",
       "count": 4
@@ -61,17 +61,17 @@
     {
       "type": "blog",
       "nav_label": "Blog",
-      "heading": "Páginas recientes del cuaderno",
+      "heading": "Blog",
       "intro": "Notas sobre escribir, editar y construir.",
-      "count": 3
+      "count": 10
     },
     {
       "type": "about",
-      "image": "",
+      "image": "/assets/uploads/JanetGuardiola.png",
       "image_alt": "",
       "nav_label": "Sobre mí",
-      "heading": "Una persona, tres oficios",
-      "list_title": "Mi proceso, en lista de tareas",
+      "heading": "Janet Rodríguez",
+      "list_title": "Mi lista de tareas",
       "list": [
         {
           "text": "Escribir el primer borrador",
@@ -90,7 +90,7 @@
           "done": false
         }
       ],
-      "body": "He trabajado como escritora, editora y desarrolladora, y el trabajo mejora cuando una misma persona lo hace todo.\n\nVivo en Puerto Rico y trabajo en español, en inglés o en ambos en un mismo proyecto."
+      "body": "Escribo, entrevisto, creo contenido y edito libros. Trabajo emprendedores, compañías, autores, librerías, marcas independientes y medios tradicionales."
     }
   ],
   "blog_all": "Todas las entradas",
