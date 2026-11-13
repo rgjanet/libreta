@@ -130,12 +130,12 @@
     {
       "label": "Linkedin",
       "url": "https://www.linkedin.com/in/rgjanet",
-      "icon": "linkedin"
+      "icon": "auto"
     },
     {
       "label": "Instagram",
       "url": "www.instagram.com/rgjanet",
-      "icon": "instagram"
+      "icon": "auto"
     },
     {
       "label": "Correo",
