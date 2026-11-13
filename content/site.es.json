@@ -125,12 +125,17 @@
     {
       "label": "Vivir del Cuento",
       "url": "https://vivirdelcuentopr.substack.com/",
-      "icon": "auto"
+      "icon": "substack"
     },
     {
-      "label": "La Mala Suerte Editorial",
-      "url": "#",
-      "icon": "auto"
+      "label": "Linkedin",
+      "url": "https://www.linkedin.com/in/rgjanet",
+      "icon": "linkedin"
+    },
+    {
+      "label": "Instagram",
+      "url": "www.instagram.com/rgjanet",
+      "icon": "instagram"
     },
     {
       "label": "Correo",
