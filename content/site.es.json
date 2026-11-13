@@ -20,24 +20,17 @@
       "heading": "",
       "tiles": [
         {
-          "title": "Escribo",
-          "text": "Ensayos, textos web y piezas largas en español o inglés, con voz propia.",
+          "title": "Creación de contenido",
+          "text": "Artículos, videos, podcasts y otros formatos de contenido.",
           "color": "pink",
           "icon": "pen",
           "image": ""
         },
         {
           "title": "Edito",
-          "text": "Edición, corrección y maquetación para autores independientes, con La Mala Suerte Editorial.",
+          "text": "Edición, corrección y maquetación para autores independientes.",
           "color": "gold",
           "icon": "page",
-          "image": ""
-        },
-        {
-          "title": "Construyo",
-          "text": "Temas de Shopify Liquid, correos con Klaviyo y sitios rápidos y legibles.",
-          "color": "aqua",
-          "icon": "code",
           "image": ""
         },
         {
