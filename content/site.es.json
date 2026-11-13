@@ -7,7 +7,7 @@
     {
       "type": "hero",
       "headline": "Creación de contenido y producción editorial",
-      "text": "Escritora, periodista, creadora de contenido y editora de libros. Trabajo con autores, librerías y marcas independientes, así como medios tradicionales.",
+      "text": "¡Hola! Me llamo Janet Rodríguez y soy escritora, periodista, creadora de contenido y editora de libros. Trabajo con autores, librerías y marcas independientes, así como medios tradicionales.",
       "button_label": "Mira lo que hago",
       "button_link": "#videos",
       "image": "",
@@ -131,15 +131,18 @@
   "footer_links": [
     {
       "label": "Vivir del Cuento",
-      "url": "https://vivirdelcuentopr.substack.com/"
+      "url": "https://vivirdelcuentopr.substack.com/",
+      "icon": "auto"
     },
     {
       "label": "La Mala Suerte Editorial",
-      "url": "#"
+      "url": "#",
+      "icon": "auto"
     },
     {
       "label": "Correo",
-      "url": "mailto:janet@rgjanet.com"
+      "url": "mailto:janet@rgjanet.com",
+      "icon": "auto"
     }
   ],
   "legal": "© 2026 Janet Rodríguez · Hecho en Puerto Rico 🇵🇷"
