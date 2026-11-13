@@ -168,7 +168,8 @@ collections:
             widget: list
             fields:
               - {label: Label, name: label, widget: string}
-              - {label: URL, name: url, widget: string}
+              - {label: URL (use mailto:you@email.com for email), name: url, widget: string}
+              - {label: Icon (Auto picks it from the URL), name: icon, widget: select, default: auto, options: [{label: Auto, value: auto}, {label: Instagram, value: instagram}, {label: YouTube, value: youtube}, {label: LinkedIn, value: linkedin}, {label: X / Twitter, value: x}, {label: Substack, value: substack}, {label: TikTok, value: tiktok}, {label: Spotify, value: spotify}, {label: Email, value: email}, {label: Generic link, value: link}, {label: No icon (show the name as text), value: none}]}
           - {label: Legal line, name: legal, widget: string}
   - name: blog
     label: Blog
