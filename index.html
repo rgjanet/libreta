@@ -118,6 +118,8 @@ header .brand{font:900 26px Fraunces,serif;text-decoration:none;color:var(--ink)
 .si{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;border:2px solid var(--ink);background:var(--paper);color:var(--ink);text-decoration:none;transition:background .15s}
 .si:hover,.si:focus-visible{background:var(--gold)}
 .st{font:600 14px 'IBM Plex Mono',monospace;padding:12px 20px;border:2px solid var(--ink);border-radius:99px;background:var(--paper);color:var(--ink);text-decoration:none}.st:hover,.st:focus-visible{background:var(--gold)}
+.apw{margin:0 0 28px}.apw .al{margin:0 0 8px}.apw audio{display:block;width:100%}.apw iframe{display:block;width:100%;border:0;border-radius:12px}
+.apw iframe[src*="spotify.com"]{height:152px}.apw iframe[src*="archive.org"]{height:60px}.ai{opacity:.75}
 .c-pink{background:var(--pink)}.c-gold{background:var(--gold)}.c-aqua{background:var(--aqua)}.c-red{background:var(--red);color:var(--paper)}.c-olive{background:var(--olive)}.c-mint{background:var(--mint)}.c-paper{background:var(--paper)}
 @media(max-width:780px){.hero,.about,.contact,.feat{grid-template-columns:1fr}.art{max-width:330px;margin:0 auto}header .wrap{flex-wrap:wrap;gap:8px 16px}header nav{order:3;flex:1 0 100%;overflow-x:auto;white-space:nowrap;gap:22px;padding-bottom:4px}header nav a{padding:8px 0}.vgrid{grid-template-columns:1fr 1fr;gap:14px}.feat{padding:22px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
@@ -143,7 +145,7 @@ let CUR={};const getQ=()=>new URLSearchParams(location.search);
 const fd=x=>{const t=new Date(x);return isNaN(t)?'':t.toLocaleDateString(lang,{year:'numeric',month:'long',day:'numeric'})};
 const sorted=d=>(d.posts||[]).slice().sort((a,b)=>new Date(b.date)-new Date(a.date));
 const PS=p=>p.slug||slug(p.title);
-const PL=p=>`<a class="card" href="?post=${encodeURIComponent(PS(p))}"><div class="img ${COL(p.color)}">${p.cover?img(p.cover,p.cover_alt):''}</div><div class="body">${p.tag?`<span class="tag mono">${E(p.tag)}</span> `:''}<span class="mono">${fd(p.date)}</span><h3>${E(p.title)}</h3><p>${E(p.excerpt)}</p></div></a>`;
+const PL=p=>`<a class="card" href="?post=${encodeURIComponent(PS(p))}"><div class="img ${COL(p.color)}">${p.cover?img(p.cover,p.cover_alt):''}</div><div class="body">${p.tag?`<span class="tag mono">${E(p.tag)}</span> `:''}<span class="mono">${fd(p.date)}</span>${hasAud(p)?' <span class="mono ai">· Audio</span>':''}<h3>${E(p.title)}</h3><p>${E(p.excerpt)}</p></div></a>`;
 const cred=w=>{const L=[];if(w.credit_name)L.push(`${E(w.credit_label)} ${w.credit_link?`<a href="${E(U(w.credit_link))}" target="_blank" rel="noopener">${E(w.credit_name)}</a>`:E(w.credit_name)}`);(w.links||[]).forEach(x=>L.push(`<a href="${E(U(x.url))}" target="_blank" rel="noopener">${E(x.label)}</a>`));return L.length?`<p class="cap">${L.join(' · ')}</p>`:''};
 const WS=d=>(d.works||[]).slice().sort((a,b)=>new Date(b.date)-new Date(a.date));
 const toV=w=>({title:w.title,file:w.video_file,url:w.video_url,poster:w.cover,color:w.color,credit_label:w.credit_label,credit_name:w.credit_name,credit_link:w.credit_link,links:w.links});
@@ -161,8 +163,16 @@ const vplayer=p=>{const y=ytId(p.video_url),vm=String(p.video_url||'').match(/vi
  else if(ia)m=`<div class="pf" data-ia="${E(ia)}"><iframe src="https://archive.org/embed/${E(ia)}" title="${E(p.title)}" allowfullscreen loading="lazy"></iframe></div>`;
  else if(vm)m=`<div class="pf"><iframe src="https://player.vimeo.com/video/${vm[1]}" title="${E(p.title)}" allow="fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>`;
  return m?`<figure class="pvw">${m}${cap}</figure>`:''};
+const iaAudio=id=>fetch(`https://archive.org/metadata/${id}`).then(r=>r.json()).then(m=>{const fs=(m.files||[]).filter(x=>/\.mp3$/i.test(x.name)).sort((a,c)=>(/vbr/i.test(c.format||'')?1:0)-(/vbr/i.test(a.format||'')?1:0));return fs[0]?`https://archive.org/download/${id}/${fs[0].name.split('/').map(encodeURIComponent).join('/')}`:null}).catch(()=>null);
+const aplayer=(p,d)=>{const cap=p.audio_caption?`<figcaption class="cap">${E(p.audio_caption)}</figcaption>`:'';let m='';
+ const af=p.audio_file||(/\.(mp3|m4a|aac|ogg|oga|wav)([?#].*)?$/i.test(p.audio_url||'')?p.audio_url:''),ia=iaId(p.audio_url);
+ if(af)m=`<audio controls preload="metadata" src="${E(U(af))}"></audio>`;
+ else if(ia)m=`<div data-iaa="${E(ia)}"><iframe src="https://archive.org/embed/${E(ia)}" title="${E(p.title)}" height="60" allowfullscreen loading="lazy"></iframe></div>`;
+ else if(p.audio_embed){const fr=String(p.audio_embed).match(/<iframe[\s\S]*?<\/iframe>/gi);if(fr)m=fr.join('')}
+ return m?`<figure class="apw"><p class="mono al">${E(d.blog_listen||'Escucha esta entrada')}</p>${m}${cap}</figure>`:''};
+const hasAud=p=>!!(p.audio_file||p.audio_url||p.audio_embed);
 const art=(d,p,back,tag,pn)=>{const mins=Math.max(1,Math.round(String(p.body||'').split(/\s+/).length/200));document.title=p.title+' — '+d.site_title;
- return `<section class="block"><div class="wrap post">${back}<div class="meta mono">${tag?`<span class="tag">${E(tag)}</span>`:''}<span>${fd(p.date)}</span>${p.body?`<span>· ${mins} ${E(d.blog_read)}</span>`:''}</div><h1>${E(p.title)}</h1>${(p.excerpt||p.summary)?`<p class="lede">${E(p.excerpt||p.summary)}</p>`:''}${p.cover?img(p.cover,p.cover_alt):''}${p.video_position==='after'?'':vplayer(p)}<div class="prose">${MD(p.body)}</div>${p.video_position==='after'?vplayer(p):''}${cred(p)}${pn||''}</div></section>`};
+ return `<section class="block"><div class="wrap post">${back}<div class="meta mono">${tag?`<span class="tag">${E(tag)}</span>`:''}<span>${fd(p.date)}</span>${p.body?`<span>· ${mins} ${E(d.blog_read)}</span>`:''}</div><h1>${E(p.title)}</h1>${(p.excerpt||p.summary)?`<p class="lede">${E(p.excerpt||p.summary)}</p>`:''}${p.cover?img(p.cover,p.cover_alt):''}${p.video_position==='after'?'':vplayer(p)}${p.audio_position==='after'?'':aplayer(p,d)}<div class="prose">${MD(p.body)}</div>${p.audio_position==='after'?aplayer(p,d):''}${p.video_position==='after'?vplayer(p):''}${cred(p)}${pn||''}</div></section>`};
 const pageV=(d,k)=>{const c=(d.categories||[]).find(x=>x.id===k)||{label:k},ws=WS(d).filter(w=>w.category===k);document.title=(c.heading||c.label)+' — '+d.site_title;
  return `<section class="block"><div class="wrap${k==='pictures'?' wide':''}"><a class="mono back" href="?">← ${E(d.home_label)}</a><h2 style="margin:20px 0 14px;font-size:clamp(34px,5.4vw,60px);font-weight:900;letter-spacing:-.02em">${E(c.heading||c.label)}</h2>${c.intro?`<p class="intro">${E(c.intro)}</p>`:''}${ws.length&&CATS[k]?CATS[k](ws):`<p>${E(d.empty_label)}</p>`}</div></section>`};
 function view(d,Q){
@@ -234,6 +244,7 @@ async function draw(l){
  const Q=getQ();if(['post','posts','page','work'].some(k=>Q.get(k)!==null))body=view(d,Q);
  document.getElementById('app').innerHTML=`${d.announcement?`<div class="strip mono">${E(d.announcement)}</div>`:''}<header id="hd"><div class="wrap"><a class="brand" href="?">${E(d.site_title)}</a><button type="button" class="menu-btn mono" id="mb" aria-expanded="false" aria-controls="mn">Menú</button><nav class="mono" id="mn" aria-label="Principal"><button type="button" class="nclose" aria-label="Cerrar menú">×</button>${nav}</nav>${LANGS.length>1?`<div class="lang mono" role="group" aria-label="Language"><button data-l="en" aria-pressed="${l=='en'}">EN</button><button data-l="es" aria-pressed="${l=='es'}">ES</button></div>`:''}</div></header><main>${body}</main><footer><div class="pen"><div class="wrap"><h2>${E(d.footer_heading)}</h2><nav class="soc" aria-label="Redes">${(d.footer_links||[]).map(flink).join('')}</nav></div></div><div class="legal mono">${E(d.legal)}</div></footer><dialog class="lb" id="lb" aria-label="Video"><div class="lb-in"><button class="lb-x" aria-label="${l=='es'?'Cerrar':'Close'}">×</button><div class="lb-m"></div><div class="lb-t"></div><div class="lb-l"></div></div></dialog>`;
  document.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>draw(b.dataset.l));
+ document.querySelectorAll('[data-iaa]').forEach(el=>iaAudio(el.dataset.iaa).then(s=>{if(s&&el.isConnected)el.outerHTML=`<audio controls preload="metadata" src="${E(s)}"></audio>`}));
  document.querySelectorAll('.pf[data-ia]').forEach(el=>iaFile(el.dataset.ia).then(s=>{if(s&&el.isConnected)el.outerHTML=`<video class="pv" src="${E(s)}" controls playsinline preload="metadata"></video>`}));
   if(!matchMedia('(prefers-reduced-motion:reduce)').matches&&'IntersectionObserver'in window){
   const io=new IntersectionObserver(es=>es.forEach(async e=>{const th=e.target;let el=th.querySelector('video.pre');
