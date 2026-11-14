@@ -32,7 +32,7 @@ collections:
                   - {label: Button label, name: button_label, widget: string, required: false}
                   - {label: Button link, name: button_link, widget: string, required: false}
                   - {label: Image (replaces the shapes), name: image, widget: image, required: false}
-                  - {label: Image description, name: image_alt, widget: string, required: false}
+                  - {label: "Image description (alt text: say what the image shows, for people who can't see it)", name: image_alt, widget: string, required: false}
                   - {label: Menu label, name: nav_label, widget: string, required: false}
               - label: Service tiles
                 name: services
@@ -78,7 +78,7 @@ collections:
                     widget: list
                     fields:
                       - {label: Image, name: image, widget: image, required: false}
-                      - {label: Image description, name: image_alt, widget: string, required: false}
+                      - {label: "Image description (alt text: say what the image shows, for people who can't see it)", name: image_alt, widget: string, required: false}
                       - {label: Tag, name: tag, widget: string, required: false}
                       - {label: Title, name: title, widget: string}
                       - {label: Text, name: text, widget: text}
@@ -99,7 +99,7 @@ collections:
                       - {label: Item, name: text, widget: string}
                       - {label: Done (ticked), name: done, widget: boolean, default: false}
                   - {label: Photo, name: image, widget: image, required: false}
-                  - {label: Photo description, name: image_alt, widget: string, required: false}
+                  - {label: "Photo description (alt text: say what the photo shows)", name: image_alt, widget: string, required: false}
                   - {label: Text, name: body, widget: markdown}
                   - {label: Menu label, name: nav_label, widget: string, required: false}
               - label: Feature (book, launch, offer)
@@ -109,7 +109,7 @@ collections:
                   - {label: Heading, name: heading, widget: string}
                   - {label: Text, name: body, widget: markdown}
                   - {label: Image, name: image, widget: image, required: false}
-                  - {label: Image description, name: image_alt, widget: string, required: false}
+                  - {label: "Image description (alt text: say what the image shows, for people who can't see it)", name: image_alt, widget: string, required: false}
                   - {label: Button label, name: button_label, widget: string, required: false}
                   - {label: Button link, name: button_link, widget: string, required: false}
                   - {label: Background colour, name: color, widget: select, default: gold, options: [pink, gold, aqua, red, olive, mint, paper]}
@@ -133,7 +133,7 @@ collections:
                     widget: list
                     fields:
                       - {label: Image, name: image, widget: image}
-                      - {label: Image description, name: alt, widget: string, required: false}
+                      - {label: "Image description (alt text: say what the image shows, for people who can't see it)", name: alt, widget: string, required: false}
                       - {label: Caption, name: caption, widget: string, required: false}
                   - {label: Menu label, name: nav_label, widget: string, required: false}
               - label: Text block
@@ -184,10 +184,11 @@ collections:
       - {label: Date, name: date, widget: datetime}
       - {label: Tag, name: tag, widget: string, required: false}
       - {label: Cover image, name: cover, widget: image, required: false}
-      - {label: Cover image description, name: cover_alt, widget: string, required: false}
+      - {label: "Cover image description (alt text: say what the image shows)", name: cover_alt, widget: string, required: false}
       - {label: "Video: upload an MP4 (ideally under 25 MB)", name: video_file, widget: file, required: false, choose_url: false}
       - {label: "Video: or paste a link (YouTube, Vimeo, Archive.org or a direct .mp4)", name: video_url, widget: string, required: false}
       - {label: Video caption, name: video_caption, widget: string, required: false}
+      - {label: "Video captions: upload a .vtt file (only works with an uploaded MP4)", name: video_captions, widget: file, required: false, choose_url: false}
       - {label: Video position, name: video_position, widget: select, default: before, options: [{label: Before the text, value: before}, {label: After the text, value: after}]}
       - {label: "Audio: upload an MP3 (ideally under 25 MB)", name: audio_file, widget: file, required: false, choose_url: false}
       - {label: "Audio: or paste a link (direct .mp3 or an Archive.org page)", name: audio_url, widget: string, required: false}
@@ -197,6 +198,7 @@ collections:
       - {label: Card colour (when no cover), name: color, widget: select, default: pink, options: [pink, gold, aqua, red, olive, mint, paper]}
       - {label: Short summary, name: excerpt, widget: text}
       - {label: Post, name: body, widget: markdown}
+      - {label: "Transcript of the video or audio (optional, for deaf and hard-of-hearing readers)", name: transcript, widget: markdown, required: false}
   - name: work
     label: Work
     label_singular: Work
@@ -209,10 +211,11 @@ collections:
       - {label: Kind of work, name: category, widget: select, options: [{label: Video, value: video}, {label: Audio and podcasts, value: audio}, {label: Writing, value: writing}, {label: Pictures, value: pictures}]}
       - {label: Date, name: date, widget: datetime}
       - {label: Cover image, name: cover, widget: image, required: false}
-      - {label: Cover image description, name: cover_alt, widget: string, required: false}
+      - {label: "Cover image description (alt text: say what the image shows)", name: cover_alt, widget: string, required: false}
       - {label: Short summary, name: summary, widget: text, required: false}
       - {label: "VIDEO: upload an MP4 (ideally under 25 MB)", name: video_file, widget: file, required: false, choose_url: false}
       - {label: "VIDEO: or paste a link (YouTube, Vimeo, Archive.org or a direct .mp4)", name: video_url, widget: string, required: false}
+      - {label: "VIDEO: captions (.vtt file, only works with an uploaded MP4)", name: video_captions, widget: file, required: false, choose_url: false}
       - {label: "AUDIO: paste the player code (Spotify, Apple Podcasts, SoundCloud)", name: embed, widget: text, required: false}
       - {label: "AUDIO: or upload an MP3", name: audio_file, widget: file, required: false, choose_url: false}
       - label: "PICTURES: images"
@@ -222,10 +225,11 @@ collections:
         label_singular: image
         fields:
           - {label: Image, name: image, widget: image}
-          - {label: Image description, name: alt, widget: string, required: false}
+          - {label: "Image description (alt text: say what the image shows, for people who can't see it)", name: alt, widget: string, required: false}
           - {label: Caption, name: caption, widget: string, required: false}
       - {label: "WRITING: link to the published piece", name: link, widget: string, required: false}
       - {label: "WRITING: or the full text (opens on its own page)", name: body, widget: markdown, required: false}
+      - {label: "Transcript of the video or audio (optional)", name: transcript, widget: markdown, required: false}
       - {label: Credit label (e.g. Presented by), name: credit_label, widget: string, required: false}
       - {label: "Credit name (client, publication, show)", name: credit_name, widget: string, required: false}
       - {label: Credit link, name: credit_link, widget: string, required: false}
