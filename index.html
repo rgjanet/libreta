@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,22 +20,16 @@
 html{scroll-behavior:smooth;scroll-padding-top:12px}*,*:before,*:after{box-sizing:border-box}
 body{margin:0;background:#fff radial-gradient(circle,rgba(51,51,51,.4) 1.1px,transparent 1.6px) 12px 12px/24px 24px;color:var(--ink);font:17px/1.6 'Source Serif 4',Georgia,serif}
 h1,h2,h3{font-family:Fraunces,Georgia,serif;margin:0;line-height:1}a{color:inherit}
-:focus-visible{outline:3px solid var(--ink);outline-offset:3px;box-shadow:0 0 0 6px #fff}
-.skip{position:absolute;left:12px;top:-80px;z-index:100;background:var(--ink);color:#fff;padding:12px 18px;font:600 15px 'IBM Plex Mono',monospace;border-radius:8px;text-decoration:none}.skip:focus{top:12px}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-main:focus{outline:none}
-.mo{font:600 13px 'IBM Plex Mono',monospace;background:none;border:2px solid var(--ink);border-radius:99px;padding:8px 16px;cursor:pointer;color:var(--ink);margin-top:14px}.mo[aria-pressed=true]{background:var(--ink);color:var(--paper)}
-details.tr{margin:0 0 28px;border:2px solid var(--ink);background:var(--paper)}details.tr summary{cursor:pointer;padding:14px 18px;font:600 14px 'IBM Plex Mono',monospace}details.tr .prose{padding:4px 18px 10px;font-size:17px}
-.rm .vt .th video.pre{display:none}
-.wrap{max-width:1060px;margin:0 auto;padding:0 22px}.mono{font:500 14px 'IBM Plex Mono',monospace}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.wrap{max-width:1060px;margin:0 auto;padding:0 22px}.mono{font:500 13px 'IBM Plex Mono',monospace}
 .strip{background:var(--pink);text-align:center;padding:7px 12px}
 header .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-top:20px;padding-bottom:20px}
 header b{font:900 26px Fraunces,serif}header nav,.lang{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
-header nav a{text-decoration:none;border-bottom:2px solid transparent;padding:8px 2px}header nav a:hover{border-color:var(--red)}
+header nav a{text-decoration:none;border-bottom:2px solid transparent}header nav a:hover{border-color:var(--red)}
 .lang button{font:inherit;background:none;border:2px solid var(--ink);border-radius:99px;padding:3px 11px;cursor:pointer;color:var(--ink)}
 .lang button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
 .btn{display:inline-block;background:var(--mint);color:var(--ink);border:2px solid var(--ink);border-radius:99px;padding:12px 24px;text-decoration:none;font:600 14px 'IBM Plex Mono',monospace;cursor:pointer}
-.btn:hover{background:var(--gold)}.btn.red{background:#C8321B;color:#fff}
+.btn:hover{background:var(--gold)}.btn.red{background:var(--red);color:var(--paper)}
 .block{padding:72px 0 0}.block>.wrap>h2,.head2 h2{font-size:clamp(30px,4.6vw,48px);font-weight:900;letter-spacing:-.02em;margin-bottom:14px}
 .intro{max-width:56ch;margin:0 0 24px}
 .hero{display:grid;grid-template-columns:1.3fr 1fr;gap:20px;align-items:center;padding-top:36px}
@@ -44,11 +38,11 @@ header nav a{text-decoration:none;border-bottom:2px solid transparent;padding:8p
 .hero img,.feat img,.about img{width:100%;height:auto;border:2px solid var(--ink);display:block}
 .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));border:2px solid var(--ink)}
 .tile{padding:22px 18px 24px;min-height:290px;display:flex;flex-direction:column;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);margin:0 -2px -2px 0}
-.tile h2,.tile h3{font-size:42px;font-weight:900}.tile p{font-size:15px;line-height:1.45;margin:10px 0 auto}.tile svg,.tile img{width:76px;height:76px;margin-top:14px}
+.tile h3{font-size:42px;font-weight:900}.tile p{font-size:15px;line-height:1.45;margin:10px 0 auto}.tile svg,.tile img{width:76px;height:76px;margin-top:14px}
 .work{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
 .card{background:var(--paper);border:2px solid var(--ink);display:flex;flex-direction:column;text-decoration:none}
 .card .img{height:180px;border-bottom:2px solid var(--ink);overflow:hidden}.card .img img{width:100%;height:100%;object-fit:cover;display:block}
-.card .body{padding:16px 18px 20px}.card h2,.card h3{font-size:24px;margin:8px 0 6px}.card p{margin:0;font-size:15px;line-height:1.5}
+.card .body{padding:16px 18px 20px}.card h3{font-size:24px;margin:8px 0 6px}.card p{margin:0;font-size:15px;line-height:1.5}
 .tag{display:inline-block;background:var(--gold);padding:2px 10px;border-radius:99px;border:1.5px solid var(--ink)}
 .about{display:grid;grid-template-columns:1fr 1.4fr;gap:44px;align-items:center}
 .sheet{background:var(--aqua);border:2px solid var(--ink);padding:30px 26px;transform:rotate(-2deg);position:relative;font:700 30px/1.15 Caveat,cursive}
@@ -72,7 +66,7 @@ input,textarea,select{font:inherit;background:var(--paper);border:2px solid var(
 .vt[disabled] .play{display:none}.vt b{display:block;font:700 18px/1.2 Fraunces,serif;margin-top:10px;min-height:2.4em}.vt:focus-visible .th{outline:3px solid var(--red);outline-offset:3px}
 dialog.lb{border:0;padding:0;background:transparent;max-width:100vw;max-height:100vh;overflow:auto;color:#fff}dialog.lb::backdrop{background:rgba(20,20,20,.92)}
 .lb-in{display:flex;flex-direction:column;align-items:center;gap:12px;padding:48px 16px 20px}
-.lb-x{position:fixed;top:8px;right:14px;background:none;border:0;color:#fff;font:400 40px/1 sans-serif;cursor:pointer;padding:4px 14px;min-width:48px;min-height:48px}dialog.lb :focus-visible{outline-color:#fff;box-shadow:0 0 0 6px #000}
+.lb-x{position:fixed;top:8px;right:14px;background:none;border:0;color:#fff;font:400 40px/1 sans-serif;cursor:pointer;padding:4px 10px}
 .lb-m{height:min(72vh,calc((100vw - 32px)*16/9));aspect-ratio:9/16;border-radius:8px;overflow:hidden}
 .lb-m video,.lb-m iframe{width:100%;height:100%;border:0;display:block;object-fit:cover}
 .lb-t{font:700 18px 'Source Serif 4',serif;text-align:center;max-width:42ch}.lb-l{font-size:15px;text-align:center}.lb-l a{color:var(--gold)}
@@ -86,7 +80,7 @@ dialog.lb{border:0;padding:0;background:transparent;max-width:100vw;max-height:1
 .wrap.post{max-width:860px}.post .meta{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin-top:22px}.post .lede{font-size:21px;line-height:1.5;max-width:none;margin:0 0 28px}
 .prose p{margin:0 0 1.1em}.prose h2{font:900 clamp(26px,4vw,34px)/1.1 Fraunces,serif;margin:40px 0 14px}.prose h3{font:700 24px/1.15 Fraunces,serif;margin:30px 0 10px}
 .prose blockquote{margin:30px 0;padding:4px 0 4px 22px;border-left:6px solid var(--red);font:italic 500 clamp(21px,3vw,26px)/1.35 Fraunces,serif}.prose blockquote p{margin:0}
-.prose a,.cap a{color:#B52E18}.prose ul,.prose ol{padding-left:1.3em;margin:0 0 1.1em}.prose li{margin:4px 0}.prose hr{border:0;border-top:3px dotted var(--ink);margin:38px 0}.prose img{display:block;margin:28px 0}.prose figure.pimg{margin:28px 0}.prose figure.pimg img{margin:0;width:100%;height:auto}.prose figure.pimg .cap{font-family:'IBM Plex Mono',monospace;font-size:13px;margin-top:8px}.prose p>figure{margin:28px 0}
+.prose a{color:var(--red)}.prose ul,.prose ol{padding-left:1.3em;margin:0 0 1.1em}.prose li{margin:4px 0}.prose hr{border:0;border-top:3px dotted var(--ink);margin:38px 0}.prose img{display:block;margin:28px 0}.prose figure.pimg{margin:28px 0}.prose figure.pimg img{margin:0;width:100%;height:auto}.prose figure.pimg .cap{font-family:'IBM Plex Mono',monospace;font-size:13px;margin-top:8px}.prose p>figure{margin:28px 0}
 .prose code{background:var(--mint);padding:1px 6px;border-radius:4px;font:14px 'IBM Plex Mono',monospace}
 .pn{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:60px}.pn .card{padding:16px 18px;color:var(--ink)}.pn .card:last-child{text-align:right}.pn b{display:block;font:700 20px/1.2 Fraunces,serif;margin-top:6px}
 @media(max-width:780px){.gal{column-count:2}.pn{grid-template-columns:1fr}.pn .card:last-child{text-align:left}}
@@ -127,14 +121,13 @@ header .brand{font:900 26px Fraunces,serif;text-decoration:none;color:var(--ink)
 .st{font:600 14px 'IBM Plex Mono',monospace;padding:12px 20px;border:2px solid var(--ink);border-radius:99px;background:var(--paper);color:var(--ink);text-decoration:none}.st:hover,.st:focus-visible{background:var(--gold)}
 .apw{margin:0 0 28px}.apw .al{margin:0 0 8px}.apw audio{display:block;width:100%}.apw iframe{display:block;width:100%;border:0;border-radius:12px}
 .apw iframe[src*="spotify.com"]{height:152px}.apw iframe[src*="archive.org"]{height:60px}.ai{opacity:.75}
-.c-pink{background:var(--pink)}.c-gold{background:var(--gold)}.c-aqua{background:var(--aqua)}.c-red{background:#C8321B;color:#fff}.c-olive{background:var(--olive)}.c-mint{background:var(--mint)}.c-paper{background:var(--paper)}
+.c-pink{background:var(--pink)}.c-gold{background:var(--gold)}.c-aqua{background:var(--aqua)}.c-red{background:var(--red);color:var(--paper)}.c-olive{background:var(--olive)}.c-mint{background:var(--mint)}.c-paper{background:var(--paper)}
 @media(max-width:780px){.hero,.about,.contact,.feat{grid-template-columns:1fr}.art{max-width:330px;margin:0 auto}header .wrap{flex-wrap:wrap;gap:8px 16px}header nav{order:3;flex:1 0 100%;overflow-x:auto;white-space:nowrap;gap:22px;padding-bottom:4px}header nav a{padding:8px 0}.vgrid{grid-template-columns:1fr 1fr;gap:14px}.feat{padding:22px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
-<a class="skip" href="#main">Saltar al contenido</a>
-<div id="app"></div>
+<div id="app" aria-live="polite"></div>
 <script src="assets/vendor/marked.min.js"></script>
 <script>
 const E=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -156,18 +149,18 @@ const PS=p=>p.slug||slug(p.title);
 const PL=p=>`<a class="card" href="?post=${encodeURIComponent(PS(p))}"><div class="img ${COL(p.color)}">${p.cover?img(p.cover,p.cover_alt):''}</div><div class="body">${p.tag?`<span class="tag mono">${E(p.tag)}</span> `:''}<span class="mono">${fd(p.date)}</span>${hasAud(p)?' <span class="mono ai">· Audio</span>':''}<h3>${E(p.title)}</h3><p>${E(p.excerpt)}</p></div></a>`;
 const cred=w=>{const L=[];if(w.credit_name)L.push(`${E(w.credit_label)} ${w.credit_link?`<a href="${E(U(w.credit_link))}" target="_blank" rel="noopener">${E(w.credit_name)}</a>`:E(w.credit_name)}`);(w.links||[]).forEach(x=>L.push(`<a href="${E(U(x.url))}" target="_blank" rel="noopener">${E(x.label)}</a>`));return L.length?`<p class="cap">${L.join(' · ')}</p>`:''};
 const WS=d=>(d.works||[]).slice().sort((a,b)=>new Date(b.date)-new Date(a.date));
-const toV=w=>({title:w.title,file:w.video_file,url:w.video_url,poster:w.cover,color:w.color,credit_label:w.credit_label,credit_name:w.credit_name,credit_link:w.credit_link,links:w.links,captions:w.video_captions});
-const vgrid=(items,car)=>`<div class="vgrid${car?' car':''}">${items.map(v=>{v=Object.assign({},v,{file:vsrc(v.file,v.url)});const y=ytId(v.url),ia=iaId(v.url),ok=v.file||y||ia||/vimeo\.com\/\d+/.test(v.url||''),k=VIDS.push(v)-1,t=v.poster?img(v.poster,''):v.file?`<video src="${E(U(v.file))}#t=0.1" preload="metadata" muted playsinline></video>`:y?`<img src="https://img.youtube.com/vi/${y}/hqdefault.jpg" alt="" loading="lazy">`:ia?`<img src="https://archive.org/services/img/${E(ia)}" alt="" loading="lazy">`:'';return `<button class="vt" ${ok?`data-v="${k}"`:'disabled'}><span class="th ${COL(v.color)}"${v.file?` data-src="${E(U(v.file))}"`:ia?` data-ia="${E(ia)}"`:''}>${t}<span class="play" aria-hidden="true"></span></span><b>${E(v.title)}</b>${v.credit_name?`<span class="cl">${E(v.credit_name)}</span>`:''}</button>`}).join('')}</div>`;
-const pcar=P=>`<div class="vcar" role="region" aria-roledescription="carrusel" aria-label="Entradas del blog"><div class="vgrid car work pcar">${P.map(PL).join('')}</div><div class="vnav"><button type="button" class="vp" aria-label="Mostrar anteriores">←</button><button type="button" class="vn" aria-label="Mostrar siguientes">→</button></div></div>`;
-const vcar=items=>`<div class="vcar" role="region" aria-roledescription="carrusel" aria-label="Vídeos">${vgrid(items,1)}<div class="vnav"><button type="button" class="vp" aria-label="Mostrar anteriores">←</button><button type="button" class="vn" aria-label="Mostrar siguientes">→</button></div></div>`;
+const toV=w=>({title:w.title,file:w.video_file,url:w.video_url,poster:w.cover,color:w.color,credit_label:w.credit_label,credit_name:w.credit_name,credit_link:w.credit_link,links:w.links});
+const vgrid=(items,car)=>`<div class="vgrid${car?' car':''}">${items.map(v=>{v=Object.assign({},v,{file:vsrc(v.file,v.url)});const y=ytId(v.url),ia=iaId(v.url),ok=v.file||y||ia||/vimeo\.com\/\d+/.test(v.url||''),k=VIDS.push(v)-1,t=v.poster?img(v.poster,''):v.file?`<video src="${E(U(v.file))}#t=0.1" preload="metadata" muted playsinline></video>`:y?`<img src="https://img.youtube.com/vi/${y}/hqdefault.jpg" alt="" loading="lazy">`:ia?`<img src="https://archive.org/services/img/${E(ia)}" alt="" loading="lazy">`:'';return `<button class="vt" ${ok?`data-v="${k}"`:'disabled'}><span class="th ${COL(v.color)}"${v.file?` data-src="${E(U(v.file))}"`:ia?` data-ia="${E(ia)}"`:''}>${t}<span class="play"></span></span><b>${E(v.title)}</b>${v.credit_name?`<span class="cl">${E(v.credit_name)}</span>`:''}</button>`}).join('')}</div>`;
+const pcar=P=>`<div class="vcar"><div class="vgrid car work pcar">${P.map(PL).join('')}</div><div class="vnav"><button type="button" class="vp" aria-label="Anterior">←</button><button type="button" class="vn" aria-label="Siguiente">→</button></div></div>`;
+const vcar=items=>`<div class="vcar">${vgrid(items,1)}<div class="vnav"><button type="button" class="vp" aria-label="Anterior">←</button><button type="button" class="vn" aria-label="Siguiente">→</button></div></div>`;
 const CATS={
  video:ws=>vgrid(ws.map(toV)),
  audio:ws=>`<div class="work">${ws.map(w=>`<article class="card"><div class="body"><h3>${E(w.title)}</h3>${w.summary?`<p>${E(w.summary)}</p>`:''}<div class="embed" style="margin-top:14px">${w.embed||(w.audio_file?`<audio controls preload="none" src="${E(U(w.audio_file))}" style="width:100%"></audio>`:'')}</div>${cred(w)}</div></article>`).join('')}</div>`,
  writing:ws=>`<div class="work">${ws.map(w=>{const href=w.link?E(U(w.link)):w.body?`?work=${encodeURIComponent(PS(w))}`:'',T=href?'a':'article';return `<${T} class="card" ${href?`href="${href}"${w.link?' target="_blank" rel="noopener"':''}`:''}><div class="img ${COL(w.color)}">${w.cover?img(w.cover,w.cover_alt):''}</div><div class="body">${w.credit_name?`<span class="tag mono">${E(w.credit_name)}</span> `:''}<span class="mono">${fd(w.date)}</span><h3>${E(w.title)}</h3><p>${E(w.summary)}</p></div></${T}>`}).join('')}</div>`,
- pictures:ws=>ws.map(w=>`<div style="margin:0 0 54px"><h2 style="font-size:28px;margin-bottom:6px">${E(w.title)}</h2>${w.summary?`<p class="intro">${E(w.summary)}</p>`:''}<div class="gal">${((w.images&&w.images.length)?w.images:(w.cover?[{image:w.cover,alt:w.cover_alt}]:[])).map(i=>`<figure>${img(i.image,i.alt)}${i.caption?`<figcaption class="cap">${E(i.caption)}</figcaption>`:''}</figure>`).join('')}</div></div>`).join('')};
+ pictures:ws=>ws.map(w=>`<div style="margin:0 0 54px"><h3 style="font-size:28px;margin-bottom:6px">${E(w.title)}</h3>${w.summary?`<p class="intro">${E(w.summary)}</p>`:''}<div class="gal">${((w.images&&w.images.length)?w.images:(w.cover?[{image:w.cover,alt:w.cover_alt}]:[])).map(i=>`<figure>${img(i.image,i.alt)}${i.caption?`<figcaption class="cap">${E(i.caption)}</figcaption>`:''}</figure>`).join('')}</div></div>`).join('')};
 const vplayer=p=>{const y=ytId(p.video_url),vm=String(p.video_url||'').match(/vimeo\.com\/(\d+)/),cap=p.video_caption?`<figcaption class="cap">${E(p.video_caption)}</figcaption>`:'';let m='';
  const vs=vsrc(p.video_file,p.video_url),ia=iaId(p.video_url);
- if(vs)m=`<video class="pv" src="${E(U(vs))}" controls playsinline preload="metadata"${p.cover?` poster="${E(U(p.cover))}"`:''}>${p.video_captions?`<track kind="captions" src="${E(U(p.video_captions))}" srclang="es" label="Español" default>`:''}</video>`;
+ if(vs)m=`<video class="pv" src="${E(U(vs))}" controls playsinline preload="metadata"${p.cover?` poster="${E(U(p.cover))}"`:''}></video>`;
  else if(y)m=`<div class="pf${/shorts\//.test(p.video_url)?' v':''}"><iframe src="https://www.youtube.com/embed/${y}?rel=0" title="${E(p.title)}" allow="encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>`;
  else if(ia)m=`<div class="pf" data-ia="${E(ia)}"><iframe src="https://archive.org/embed/${E(ia)}" title="${E(p.title)}" allowfullscreen loading="lazy"></iframe></div>`;
  else if(vm)m=`<div class="pf"><iframe src="https://player.vimeo.com/video/${vm[1]}" title="${E(p.title)}" allow="fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>`;
@@ -179,21 +172,20 @@ const aplayer=(p,d)=>{const cap=p.audio_caption?`<figcaption class="cap">${E(p.a
  else if(ia)m=`<div data-iaa="${E(ia)}"><iframe src="https://archive.org/embed/${E(ia)}" title="${E(p.title)}" height="60" allowfullscreen loading="lazy"></iframe></div>`;
  else if(p.audio_embed){const fr=String(p.audio_embed).match(/<iframe[\s\S]*?<\/iframe>/gi);if(fr)m=fr.join('')}
  return m?`<figure class="apw"><p class="mono al">${E(d.blog_listen||'Escucha esta entrada')}</p>${m}${cap}</figure>`:''};
-const trans=(t,l)=>t?`<details class="tr"><summary>${E(l||'Leer la transcripción')}</summary><div class="prose">${MD(t)}</div></details>`:'';
 const hasAud=p=>!!(p.audio_file||p.audio_url||p.audio_embed);
 const art=(d,p,back,tag,pn)=>{const mins=Math.max(1,Math.round(String(p.body||'').split(/\s+/).length/200));document.title=p.title+' — '+d.site_title;
- return `<section class="block"><div class="wrap post">${back}<div class="meta mono">${tag?`<span class="tag">${E(tag)}</span>`:''}<span>${fd(p.date)}</span>${p.body?`<span>· ${mins} ${E(d.blog_read)}</span>`:''}</div><h1>${E(p.title)}</h1>${(p.excerpt||p.summary)?`<p class="lede">${E(p.excerpt||p.summary)}</p>`:''}${p.cover?img(p.cover,p.cover_alt):''}${p.video_position==='after'?'':vplayer(p)}${p.audio_position==='after'?'':aplayer(p,d)}<div class="prose">${MD(p.body)}</div>${p.audio_position==='after'?aplayer(p,d):''}${p.video_position==='after'?vplayer(p):''}${trans(p.transcript,d.transcript_label)}${cred(p)}${pn||''}</div></section>`};
+ return `<section class="block"><div class="wrap post">${back}<div class="meta mono">${tag?`<span class="tag">${E(tag)}</span>`:''}<span>${fd(p.date)}</span>${p.body?`<span>· ${mins} ${E(d.blog_read)}</span>`:''}</div><h1>${E(p.title)}</h1>${(p.excerpt||p.summary)?`<p class="lede">${E(p.excerpt||p.summary)}</p>`:''}${p.cover?img(p.cover,p.cover_alt):''}${p.video_position==='after'?'':vplayer(p)}${p.audio_position==='after'?'':aplayer(p,d)}<div class="prose">${MD(p.body)}</div>${p.audio_position==='after'?aplayer(p,d):''}${p.video_position==='after'?vplayer(p):''}${cred(p)}${pn||''}</div></section>`};
 const pageV=(d,k)=>{const c=(d.categories||[]).find(x=>x.id===k)||{label:k},ws=WS(d).filter(w=>w.category===k);document.title=(c.heading||c.label)+' — '+d.site_title;
- return `<section class="block"><div class="wrap${k==='pictures'?' wide':''}"><a class="mono back" href="?">← ${E(d.home_label)}</a><h1 style="margin:20px 0 14px;font-size:clamp(34px,5.4vw,60px);font-weight:900;letter-spacing:-.02em">${E(c.heading||c.label)}</h1>${c.intro?`<p class="intro">${E(c.intro)}</p>`:''}${ws.length&&CATS[k]?CATS[k](ws):`<p>${E(d.empty_label)}</p>`}</div></section>`};
+ return `<section class="block"><div class="wrap${k==='pictures'?' wide':''}"><a class="mono back" href="?">← ${E(d.home_label)}</a><h2 style="margin:20px 0 14px;font-size:clamp(34px,5.4vw,60px);font-weight:900;letter-spacing:-.02em">${E(c.heading||c.label)}</h2>${c.intro?`<p class="intro">${E(c.intro)}</p>`:''}${ws.length&&CATS[k]?CATS[k](ws):`<p>${E(d.empty_label)}</p>`}</div></section>`};
 function view(d,Q){
  const back=`<a class="mono back" href="?#blog">← ${E(d.blog_back)}</a>`,pk=Q.get('page'),wk=Q.get('work'),k=Q.get('post');
- const miss=b=>`<section class="block"><div class="wrap">${b}<h1 style="margin-top:20px">${E(d.blog_missing)}</h1></div></section>`;
+ const miss=b=>`<section class="block"><div class="wrap">${b}<h2 style="margin-top:20px">${E(d.blog_missing)}</h2></div></section>`;
  if(pk!==null)return pageV(d,pk);
  if(wk!==null){const w=WS(d).find(x=>PS(x)===wk),c=w&&(d.categories||[]).find(x=>x.id===w.category),b=`<a class="mono back" href="${w?'?page='+encodeURIComponent(w.category):'?'}">← ${E(c?c.label:d.home_label)}</a>`;return w?art(d,w,b,w.credit_name,''):miss(b)}
  if(k!==null){const S2=sorted(d),p=S2.find(x=>PS(x)===k);if(!p)return miss(back);const i=S2.indexOf(p),nw=S2[i-1],od=S2[i+1];
   const pc=(x,l)=>`<a class="card pc" href="?post=${encodeURIComponent(PS(x))}"><span class="mono">${l}</span><b>${E(x.title)}</b></a>`;
   return art(d,p,back,p.tag,`<nav class="pn" aria-label="Posts">${nw?pc(nw,'← '+E(d.blog_newer)):'<span></span>'}${od?pc(od,E(d.blog_older)+' →'):'<span></span>'}</nav>`)}
- return `<section class="block"><div class="wrap">${back}<h1 style="margin:20px 0 24px;font-size:clamp(30px,4.6vw,48px);font-weight:900">${E(d.blog_all)}</h1>${pcar(sorted(d)).replace(/<h3>/g,'<h2>').replace(/<\/h3>/g,'</h2>')}</div></section>`}
+ return `<section class="block"><div class="wrap">${back}<h2 style="margin:20px 0 24px;font-size:clamp(30px,4.6vw,48px);font-weight:900">${E(d.blog_all)}</h2>${pcar(sorted(d))}</div></section>`}
 const SI={
  instagram:'<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r=".6" fill="currentColor"/>',
  youtube:'<rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9.2v5.6l5-2.8z" fill="currentColor"/>',
@@ -215,7 +207,7 @@ const iaId=u=>{const m=String(u||'').match(/archive\.org\/(?:details|embed)\/([^
 const iaFile=id=>fetch(`https://archive.org/metadata/${id}`).then(r=>r.json()).then(m=>{const f=(m.files||[]).filter(x=>/\.mp4$/i.test(x.name)).sort((a,c)=>(/h\.264/i.test(c.format||'')?1:0)-(/h\.264/i.test(a.format||'')?1:0))[0];return f?`https://archive.org/download/${id}/${f.name.split('/').map(encodeURIComponent).join('/')}`:null}).catch(()=>null);
 const R={
  hero:s=>`<div class="wrap hero"><div><h1>${E(s.headline)}</h1><p>${E(s.text)}</p>${btn(s.button_label,s.button_link)}</div>${s.image?`<div>${img(s.image,s.image_alt)}</div>`:`<div class="shapes" aria-hidden="true"><svg class="art" viewBox="0 0 480 440"><circle cx="175" cy="150" r="108" fill="#FBB94B"/><circle cx="395" cy="95" r="52" fill="#FFBBA6"/><circle cx="378" cy="275" r="88" fill="#97AA6A"/><path d="M270 40V100M240 70H300M249 49L291 91M291 49L249 91" stroke="#A4CCC4" stroke-width="12" stroke-linecap="round" fill="none"/><path d="M30 365C70 270 125 270 160 335S250 410 290 330 365 290 410 380" fill="none" stroke="#EE583F" stroke-width="22" stroke-linecap="round"/></svg></div>`}</div>`,
- services:s=>`<div class="wrap">${s.heading?`<h2>${E(s.heading)}</h2>`:''}<div class="tiles">${(s.tiles||[]).map(t=>`<div class="tile ${COL(t.color)}"><${s.heading?'h3':'h2'}>${E(t.title)}</${s.heading?'h3':'h2'}><p>${E(t.text)}</p>${t.image?img(t.image,''):ICON[t.icon]?`<svg viewBox="0 0 76 76" aria-hidden="true">${ICON[t.icon]}</svg>`:''}</div>`).join('')}</div></div>`,
+ services:s=>`<div class="wrap">${s.heading?`<h2>${E(s.heading)}</h2>`:''}<div class="tiles">${(s.tiles||[]).map(t=>`<div class="tile ${COL(t.color)}"><h3>${E(t.title)}</h3><p>${E(t.text)}</p>${t.image?img(t.image,''):ICON[t.icon]?`<svg viewBox="0 0 76 76" aria-hidden="true">${ICON[t.icon]}</svg>`:''}</div>`).join('')}</div></div>`,
  work:s=>`<div class="wrap"><h2>${E(s.heading)}</h2>${s.intro?`<p class="intro">${E(s.intro)}</p>`:''}<div class="work">${(s.items||[]).map(i=>{const T=i.link?'a':'article';return `<${T} class="card" ${i.link?`href="${E(U(i.link))}"`:''}><div class="img ${COL(i.color)}">${img(i.image,i.image_alt)}</div><div class="body">${i.tag?`<span class="tag mono">${E(i.tag)}</span>`:''}<h3>${E(i.title)}</h3><p>${E(i.text)}</p></div></${T}>`}).join('')}</div></div>`,
  about:s=>`<div class="wrap about"><div>${s.image?img(s.image,s.image_alt):`${s.list&&s.list.length?`<div class="sheet"><h3>${E(s.list_title)}</h3><ul class="chk">${s.list.map(x=>`<li class="${x.done?'on':''}"><i></i><span>${E(x.text)}</span></li>`).join('')}</ul></div>`:`<div class="sheet">${E(s.note)}</div>`}`}</div><div><h2>${E(s.heading)}</h2><div class="prose">${MD(s.body)}</div></div></div>`,
  feature:s=>`<div class="wrap"><div class="feat ${COL(s.color)} ${s.image?'':'nopic'}">${s.image?`<div>${img(s.image,s.image_alt)}</div>`:''}<div><h2>${E(s.heading)}</h2><div class="prose">${MD(s.body)}</div>${btn(s.button_label,s.button_link,'red')}</div></div></div>`,
@@ -224,20 +216,20 @@ const R={
  text:s=>`<div class="wrap"><h2>${E(s.heading)}</h2><div class="prose">${MD(s.body)}</div></div>`,
 blog:s=>{const P=sorted(CUR),n=+s.count||8;return `<div class="wrap"><h2>${E(s.heading)}</h2>${s.intro?`<p class="intro">${E(s.intro)}</p>`:''}${pcar(P.slice(0,n))}${P.length>n?`<p style="margin-top:26px"><a class="btn" href="?posts=all">${E(CUR.blog_all)}</a></p>`:''}</div>`},
  works:s=>{const k=s.category||'video',c=(CUR.categories||[]).find(x=>x.id===k)||{label:k},ws=WS(CUR).filter(w=>w.category===k),n=+s.count||4;return `<div class="wrap"><h2>${E(s.heading)}</h2>${s.intro?`<p class="intro">${E(s.intro)}</p>`:''}${ws.length&&CATS[k]?(k==='video'?vcar(ws.slice(0,n).map(toV)):CATS[k](ws.slice(0,n))):`<p>${E(CUR.empty_label)}</p>`}<p style="margin-top:26px"><a class="btn" href="?page=${E(k)}">${E(s.button_label||c.label)}</a></p></div>`},
- videos:s=>`<div class="wrap">${s.heading?`<h2>${E(s.heading)}</h2>`:''}${s.intro?`<p class="intro">${E(s.intro)}</p>`:''}<div class="vgrid">${(s.items||[]).map(v=>{const y=ytId(v.url),ok=v.file||y||/vimeo\.com\/\d+/.test(v.url||''),k=VIDS.push(v)-1,t=v.poster?img(v.poster,''):v.file?`<video src="${E(U(v.file))}#t=0.1" preload="metadata" muted playsinline></video>`:y?`<img src="https://img.youtube.com/vi/${y}/hqdefault.jpg" alt="" loading="lazy">`:'';return `<button class="vt" ${ok?`data-v="${k}"`:'disabled'}><span class="th ${COL(v.color)}">${t}<span class="play" aria-hidden="true"></span></span><b>${E(v.title)}</b></button>`}).join('')}</div></div>`,
+ videos:s=>`<div class="wrap">${s.heading?`<h2>${E(s.heading)}</h2>`:''}${s.intro?`<p class="intro">${E(s.intro)}</p>`:''}<div class="vgrid">${(s.items||[]).map(v=>{const y=ytId(v.url),ok=v.file||y||/vimeo\.com\/\d+/.test(v.url||''),k=VIDS.push(v)-1,t=v.poster?img(v.poster,''):v.file?`<video src="${E(U(v.file))}#t=0.1" preload="metadata" muted playsinline></video>`:y?`<img src="https://img.youtube.com/vi/${y}/hqdefault.jpg" alt="" loading="lazy">`:'';return `<button class="vt" ${ok?`data-v="${k}"`:'disabled'}><span class="th ${COL(v.color)}">${t}<span class="play"></span></span><b>${E(v.title)}</b></button>`}).join('')}</div></div>`,
 };
 const LANGS=['es']; // add 'en' here to bring back the EN/ES toggle
 let lang=LANGS[0];try{lang=new URLSearchParams(location.search).get('lang')||localStorage.getItem('lang')||(navigator.language||'en').slice(0,2)}catch(e){}
 if(!LANGS.includes(lang))lang=LANGS[0];
 function openV(v,dlg,lm,b){
  const y=ytId(v.url),vm=String(v.url||'').match(/vimeo\.com\/(\d+)/),ia=iaId(v.url);
- const play=src=>{lm.innerHTML=`<video src="${E(src)}" ${v.poster?`poster="${E(U(v.poster))}"`:''} controls autoplay playsinline>${v.captions?`<track kind="captions" src="${E(U(v.captions))}" srclang="es" label="Español" default>`:''}</video>`;const el=lm.firstChild;el.onloadedmetadata=()=>{if(el.videoWidth)lm.style.aspectRatio=el.videoWidth+'/'+el.videoHeight}};
+ const play=src=>{lm.innerHTML=`<video src="${E(src)}" ${v.poster?`poster="${E(U(v.poster))}"`:''} controls autoplay playsinline></video>`;const el=lm.firstChild;el.onloadedmetadata=()=>{if(el.videoWidth)lm.style.aspectRatio=el.videoWidth+'/'+el.videoHeight}};
  if(v.file)play(U(v.file));
  else if(y)lm.innerHTML=`<iframe src="https://www.youtube.com/embed/${y}?autoplay=1&playsinline=1&rel=0" title="${E(v.title)}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
  else if(vm)lm.innerHTML=`<iframe src="https://player.vimeo.com/video/${vm[1]}?autoplay=1" title="${E(v.title)}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
  else if(ia){lm.innerHTML=`<iframe src="https://archive.org/embed/${E(ia)}" title="${E(v.title)}" allowfullscreen></iframe>`;iaFile(ia).then(s=>{if(s&&dlg.open)play(s)})}
  else return;
- dlg.querySelector('.lb-t').textContent=v.title||'';dlg.setAttribute('aria-label',v.title||'Video');
+ dlg.querySelector('.lb-t').textContent=v.title||'';
  const L=[];if(v.credit_name)L.push(`${E(v.credit_label)} ${v.credit_link?`<a href="${E(U(v.credit_link))}" target="_blank" rel="noopener">${E(v.credit_name)}</a>`:E(v.credit_name)}`);
  (v.links||[]).forEach(x=>L.push(`<a href="${E(U(x.url))}" target="_blank" rel="noopener">${E(x.label)}</a>`));
  dlg.querySelector('.lb-l').innerHTML=L.map(x=>`<div>${x}</div>`).join('');dlg._b=b;dlg.showModal();
@@ -252,18 +244,11 @@ async function draw(l){
  VIDS=[];CUR=d;const S=d.sections||[];let nav=(d.categories||[]).map(c=>`<a href="?page=${E(c.id)}">${E(c.label)}</a>`).join('');
  let body=S.map((s,i)=>{const f=R[s.type];if(!f)return'';const id=slug(s.nav_label||'')||'s'+i;if(s.nav_label)nav+=`<a href="?#${id}">${E(s.nav_label)}</a>`;return `<section class="block" id="${id}">${f(s)}</section>`}).join('');
  const Q=getQ();if(['post','posts','page','work'].some(k=>Q.get(k)!==null))body=view(d,Q);
- document.getElementById('app').innerHTML=`${d.announcement?`<div class="strip mono" role="region" aria-label="Aviso">${E(d.announcement)}</div>`:''}<header id="hd"><div class="wrap"><a class="brand" href="?">${E(d.site_title)}</a><button type="button" class="menu-btn mono" id="mb" aria-expanded="false" aria-controls="mn">Menú</button><nav class="mono" id="mn" aria-label="Principal"><button type="button" class="nclose" aria-label="Cerrar menú">×</button>${nav}</nav>${LANGS.length>1?`<div class="lang mono" role="group" aria-label="Language"><button data-l="en" aria-pressed="${l=='en'}">EN</button><button data-l="es" aria-pressed="${l=='es'}">ES</button></div>`:''}</div></header><main id="main" tabindex="-1">${body}</main><footer><div class="pen"><div class="wrap"><h2>${E(d.footer_heading)}</h2><nav class="soc" aria-label="Redes">${(d.footer_links||[]).map(flink).join('')}</nav></div></div><div class="legal mono">${E(d.legal)}</div></footer><dialog class="lb" id="lb" aria-label="Video"><div class="lb-in"><button class="lb-x" aria-label="${l=='es'?'Cerrar':'Close'}">×</button><div class="lb-m"></div><div class="lb-t"></div><div class="lb-l"></div></div></dialog>`;
+ document.getElementById('app').innerHTML=`${d.announcement?`<div class="strip mono">${E(d.announcement)}</div>`:''}<header id="hd"><div class="wrap"><a class="brand" href="?">${E(d.site_title)}</a><button type="button" class="menu-btn mono" id="mb" aria-expanded="false" aria-controls="mn">Menú</button><nav class="mono" id="mn" aria-label="Principal"><button type="button" class="nclose" aria-label="Cerrar menú">×</button>${nav}</nav>${LANGS.length>1?`<div class="lang mono" role="group" aria-label="Language"><button data-l="en" aria-pressed="${l=='en'}">EN</button><button data-l="es" aria-pressed="${l=='es'}">ES</button></div>`:''}</div></header><main>${body}</main><footer><div class="pen"><div class="wrap"><h2>${E(d.footer_heading)}</h2><nav class="soc" aria-label="Redes">${(d.footer_links||[]).map(flink).join('')}</nav></div></div><div class="legal mono">${E(d.legal)}</div></footer><dialog class="lb" id="lb" aria-label="Video"><div class="lb-in"><button class="lb-x" aria-label="${l=='es'?'Cerrar':'Close'}">×</button><div class="lb-m"></div><div class="lb-t"></div><div class="lb-l"></div></div></dialog>`;
  document.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>draw(b.dataset.l));
  document.querySelectorAll('[data-iaa]').forEach(el=>iaAudio(el.dataset.iaa).then(s=>{if(s&&el.isConnected)el.outerHTML=`<audio controls preload="metadata" src="${E(s)}"></audio>`}));
  document.querySelectorAll('.pf[data-ia]').forEach(el=>iaFile(el.dataset.ia).then(s=>{if(s&&el.isConnected)el.outerHTML=`<video class="pv" src="${E(s)}" controls playsinline preload="metadata"></video>`}));
- let NOMO=0;try{NOMO=localStorage.getItem('nomo')==='1'}catch(e){}
- const RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
- if(!RM&&document.querySelector('.th[data-src],.th[data-ia]')){const f=document.createElement('div');f.className='wrap';f.style.cssText='padding-top:18px;padding-bottom:6px';
-  f.innerHTML=`<button type="button" class="mo" id="mo" aria-pressed="${NOMO}">Pausar vídeos animados</button>`;document.querySelector('footer').appendChild(f);
-  document.getElementById('mo').onclick=e=>{const on=e.currentTarget.getAttribute('aria-pressed')!=='true';try{localStorage.setItem('nomo',on?'1':'0')}catch(x){}
-   e.currentTarget.setAttribute('aria-pressed',on);if(on){document.body.classList.add('rm');document.querySelectorAll('video.pre').forEach(v=>v.pause())}else location.reload()}}
- if(NOMO)document.body.classList.add('rm');
-  if(!RM&&!NOMO&&'IntersectionObserver'in window){
+  if(!matchMedia('(prefers-reduced-motion:reduce)').matches&&'IntersectionObserver'in window){
   const io=new IntersectionObserver(es=>es.forEach(async e=>{const th=e.target;let el=th.querySelector('video.pre');
    if(e.isIntersecting){
     if(!el&&!th._b){th._b=1;let s=th.dataset.src;if(!s&&th.dataset.ia)s=await iaFile(th.dataset.ia);
