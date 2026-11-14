@@ -146,6 +146,7 @@ collections:
           - {label: Blog - "All posts" button, name: blog_all, widget: string}
           - {label: Blog - "Back to blog" link, name: blog_back, widget: string}
           - {label: Blog - "min read" label, name: blog_read, widget: string}
+          - {label: Blog - label above the audio player, name: blog_listen, widget: string, required: false}
           - {label: Blog - "Newer" post label, name: blog_newer, widget: string}
           - {label: Blog - "Older" post label, name: blog_older, widget: string}
           - {label: Blog - message when a post is missing in this language, name: blog_missing, widget: string}
@@ -188,6 +189,11 @@ collections:
       - {label: "Video: or paste a link (YouTube, Vimeo, Archive.org or a direct .mp4)", name: video_url, widget: string, required: false}
       - {label: Video caption, name: video_caption, widget: string, required: false}
       - {label: Video position, name: video_position, widget: select, default: before, options: [{label: Before the text, value: before}, {label: After the text, value: after}]}
+      - {label: "Audio: upload an MP3 (ideally under 25 MB)", name: audio_file, widget: file, required: false, choose_url: false}
+      - {label: "Audio: or paste a link (direct .mp3 or an Archive.org page)", name: audio_url, widget: string, required: false}
+      - {label: "Audio: or paste a player code (Spotify, Apple Podcasts, SoundCloud)", name: audio_embed, widget: text, required: false}
+      - {label: Audio caption, name: audio_caption, widget: string, required: false}
+      - {label: Audio position, name: audio_position, widget: select, default: before, options: [{label: Before the text, value: before}, {label: After the text, value: after}]}
       - {label: Card colour (when no cover), name: color, widget: select, default: pink, options: [pink, gold, aqua, red, olive, mint, paper]}
       - {label: Short summary, name: excerpt, widget: text}
       - {label: Post, name: body, widget: markdown}
