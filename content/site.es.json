@@ -20,8 +20,8 @@
       "heading": "",
       "tiles": [
         {
-          "title": "Creación de contenido",
-          "text": "Artículos, videos, podcasts y otros formatos de contenido.",
+          "title": "Creo",
+          "text": "Creación de contenido: artículos, videos, podcasts y otros formatos.",
           "color": "pink",
           "icon": "pen",
           "image": ""
@@ -89,6 +89,7 @@
   "blog_all": "Todas las entradas",
   "blog_back": "Volver al blog",
   "blog_read": "min de lectura",
+  "blog_listen": "",
   "blog_newer": "Más nueva",
   "blog_older": "Más antigua",
   "blog_missing": "Esta entrada aún no está disponible en este idioma.",
