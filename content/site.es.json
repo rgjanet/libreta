@@ -110,13 +110,13 @@
       "id": "writing",
       "label": "Escritura",
       "heading": "Escritura",
-      "intro": "Ensayos, artículos y textos publicados."
+      "intro": "Artículos, entrevistas y textos publicados."
     },
     {
       "id": "pictures",
       "label": "Imágenes",
       "heading": "Imágenes",
-      "intro": "Fotografías y piezas visuales de mis proyectos."
+      "intro": "Fotografías y piezas visuales."
     }
   ],
   "home_label": "Inicio",
