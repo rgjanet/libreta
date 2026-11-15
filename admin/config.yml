@@ -17,6 +17,10 @@ collections:
           - {label: Site name, name: site_title, widget: string}
           - {label: Tagline, name: tagline, widget: string, required: false}
           - {label: Search description, name: description, widget: text, required: false}
+          - {label: "Site address (full URL where the site is published, with https://)", name: site_url, widget: string, required: false}
+          - {label: "Share image (shown when the link is shared; 1200x630 px works best)", name: og_image, widget: image, required: false}
+          - {label: "Analytics service", name: analytics_provider, widget: select, default: none, options: [{label: None, value: none}, {label: GoatCounter, value: goatcounter}, {label: Umami Cloud, value: umami}, {label: Google Analytics 4 (shows a consent banner), value: ga4}], required: false}
+          - {label: "Analytics ID (GoatCounter: site code; Umami: website ID; Google Analytics: Measurement ID like G-XXXXXXXXXX)", name: analytics_id, widget: string, required: false}
           - {label: Announcement strip (leave empty to hide), name: announcement, widget: string, required: false}
           - label: Sections
             name: sections
