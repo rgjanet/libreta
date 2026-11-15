@@ -27,6 +27,7 @@ main:focus{outline:none}
 .mo{font:600 13px 'IBM Plex Mono',monospace;background:none;border:2px solid var(--ink);border-radius:99px;padding:8px 16px;cursor:pointer;color:var(--ink);margin-top:14px}.mo[aria-pressed=true]{background:var(--ink);color:var(--paper)}
 details.tr{margin:0 0 28px;border:2px solid var(--ink);background:var(--paper)}details.tr summary{cursor:pointer;padding:14px 18px;font:600 14px 'IBM Plex Mono',monospace}details.tr .prose{padding:4px 18px 10px;font-size:17px}
 .rm .vt .th video.pre{display:none}
+.card .dt{display:block;margin-top:8px}
 .bks{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:30px 22px}
 .bk{display:flex;flex-direction:column;text-decoration:none;color:var(--ink)}
 .bk .bc{aspect-ratio:2/3;border:2px solid var(--ink);overflow:hidden;display:flex;align-items:flex-end;padding:14px;box-shadow:6px 6px 0 var(--ink)}
@@ -177,7 +178,7 @@ const vcar=items=>`<div class="vcar" role="region" aria-roledescription="carruse
 const CATS={
  video:ws=>vgrid(ws.map(toV)),
  audio:ws=>`<div class="work">${ws.map(w=>`<article class="card"><div class="body"><h3>${E(w.title)}</h3>${w.summary?`<p>${E(w.summary)}</p>`:''}<div class="embed" style="margin-top:14px">${w.embed||(w.audio_file?`<audio controls preload="none" src="${E(U(w.audio_file))}" style="width:100%"></audio>`:'')}</div>${cred(w)}</div></article>`).join('')}</div>`,
- writing:ws=>`<div class="work">${ws.map(w=>{const href=w.link?E(U(w.link)):w.body?`?work=${encodeURIComponent(PS(w))}`:'',T=href?'a':'article';return `<${T} class="card" ${href?`href="${href}"${w.link?' target="_blank" rel="noopener"':''}`:''}><div class="img ${COL(w.color)}">${w.cover?img(w.cover,w.cover_alt):''}</div><div class="body">${w.credit_name?`<span class="tag mono">${E(w.credit_name)}</span> `:''}<span class="mono">${fd(w.date)}</span><h3>${E(w.title)}</h3><p>${E(w.summary)}</p></div></${T}>`}).join('')}</div>`,
+ writing:ws=>`<div class="work">${ws.map(w=>{const href=w.link?E(U(w.link)):w.body?`?work=${encodeURIComponent(PS(w))}`:'',T=href?'a':'article';return `<${T} class="card" ${href?`href="${href}"${w.link?' target="_blank" rel="noopener"':''}`:''}><div class="img ${COL(w.color)}">${w.cover?img(w.cover,w.cover_alt):''}</div><div class="body">${w.credit_name?`<span class="tag mono">${E(w.credit_name)}</span>`:''}<span class="mono dt">${fd(w.date)}</span><h3>${E(w.title)}</h3><p>${E(w.summary)}</p></div></${T}>`}).join('')}</div>`,
  pictures:ws=>ws.map(w=>`<div style="margin:0 0 54px"><h2 style="font-size:28px;margin-bottom:6px">${E(w.title)}</h2>${w.summary?`<p class="intro">${E(w.summary)}</p>`:''}<div class="gal">${((w.images&&w.images.length)?w.images:(w.cover?[{image:w.cover,alt:w.cover_alt}]:[])).map(i=>`<figure>${img(i.image,i.alt)}${i.caption?`<figcaption class="cap">${E(i.caption)}</figcaption>`:''}</figure>`).join('')}</div></div>`).join('')};
 const vplayer=p=>{const y=ytId(p.video_url),vm=String(p.video_url||'').match(/vimeo\.com\/(\d+)/),cap=p.video_caption?`<figcaption class="cap">${E(p.video_caption)}</figcaption>`:'';let m='';
  const vs=vsrc(p.video_file,p.video_url),ia=iaId(p.video_url);
