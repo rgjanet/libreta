@@ -6,8 +6,11 @@
   "roles": [
     "Edición",
     "Corrección",
-    "Maquetación",
-    "Diseño de portada"
+    "Diseño de portada",
+    "Edición de contenido",
+    "Corrección de estilo",
+    "Corrección ortotipográfica",
+    "Maquetación"
   ],
   "cover": "/assets/uploads/unviajesinregreso.jpg",
   "cover_alt": "",
