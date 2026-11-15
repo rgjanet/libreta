@@ -84,9 +84,17 @@
         }
       ],
       "body": "Escribo, entrevisto, creo contenido y edito libros. Trabajo con emprendedores, compañías, autores, librerías, marcas independientes y medios tradicionales."
+    },
+    {
+      "type": "books",
+      "nav_label": "Editorial",
+      "heading": "Editorial",
+      "intro": "Libros en los que he trabajado como asistente editorial y editora freelance",
+      "count": 12
     }
   ],
   "blog_all": "Todas las entradas",
+  "books_all": "",
   "blog_back": "Volver al blog",
   "blog_read": "min de lectura",
   "blog_listen": "",
