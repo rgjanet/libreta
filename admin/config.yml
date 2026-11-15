@@ -193,7 +193,7 @@ collections:
       - {label: Author, name: author, widget: string, required: false}
       - {label: Year, name: year, widget: number, value_type: int, required: false}
       - {label: Publisher or client, name: publisher, widget: string, required: false}
-      - {label: What I did, name: roles, widget: select, multiple: true, options: [Edición de contenido, Corrección de estilo, Corrección ortotipográfica, Maquetación, Diseño de cubierta, Traducción], required: false}
+      - {label: What I did, name: roles, widget: select, multiple: true, options: [Edición de contenido, Corrección de estilo, Corrección ortotipográfica, Maquetación, Diseño de cubierta, Traducción, Edición, Corrección, Diseño de portada, Producción completa], required: false}
       - {label: Cover, name: cover, widget: image, required: false}
       - {label: "Cover description", name: cover_alt, widget: string, required: false}
       - {label: Cover colour (when there is no cover), name: color, widget: select, default: pink, options: [pink, gold, aqua, red, olive, mint, paper]}
