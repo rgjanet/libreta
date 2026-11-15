@@ -3,7 +3,9 @@
   "author": "Brenda Mejía",
   "year": 2023,
   "publisher": "Eventurera Ediciones",
-  "roles": [],
+  "roles": [
+    "Traducción"
+  ],
   "cover": "/assets/uploads/movearoundsanturce.jpg",
   "cover_alt": "",
   "color": "pink",
