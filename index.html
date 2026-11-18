@@ -132,7 +132,7 @@ header .brand{font:900 26px Fraunces,serif;text-decoration:none;color:var(--ink)
 .si{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;border:2px solid var(--ink);background:var(--paper);color:var(--ink);text-decoration:none;transition:background .15s}
 .si:hover,.si:focus-visible{background:var(--gold)}
 .st{font:600 14px 'IBM Plex Mono',monospace;padding:12px 20px;border:2px solid var(--ink);border-radius:99px;background:var(--paper);color:var(--ink);text-decoration:none}.st:hover,.st:focus-visible{background:var(--gold)}
-.apw{margin:0 0 28px}.apw .al{margin:0 0 8px}.apw audio{display:block;width:100%}.apw iframe{display:block;width:100%;border:0;border-radius:12px}
+.apw{margin:0 0 28px}.prose .apw.sb{margin:26px 0}.apw .al{margin:0 0 8px}.apw audio{display:block;width:100%}.apw iframe{display:block;width:100%;border:0;border-radius:12px}
 .apw iframe[src*="spotify.com"]{height:152px}.apw iframe[src*="archive.org"]{height:60px}.ai{opacity:.75}
 .c-pink{background:var(--pink)}.c-gold{background:var(--gold)}.c-aqua{background:var(--aqua)}.c-red{background:var(--red);color:var(--paper)}.c-olive{background:var(--olive)}.c-mint{background:var(--mint)}.c-paper{background:var(--paper)}
 @media(max-width:780px){.hero,.about,.contact,.feat{grid-template-columns:1fr}.art{max-width:330px;margin:0 auto}header .wrap{flex-wrap:wrap;gap:8px 16px}header nav{order:3;flex:1 0 100%;overflow-x:auto;white-space:nowrap;gap:22px;padding-bottom:4px}header nav a{padding:8px 0}.vgrid{grid-template-columns:1fr 1fr;gap:14px}.feat{padding:22px}}
@@ -145,7 +145,14 @@ header .brand{font:900 26px Fraunces,serif;text-decoration:none;color:var(--ink)
 <script>
 const E=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const U=p=>!p?'':/^(https?:|mailto:|#)/.test(p)?p:p.replace(/^\//,'');
-const MD=t=>{if(!window.marked)return'<p>'+E(t)+'</p>';const r=new marked.Renderer();r.image=function(h,ti,x){if(h&&typeof h==='object'){ti=h.title;x=h.text;h=h.href}return'<figure class="pimg"><img src="'+E(h||'')+'" alt="'+E(x||'')+'" loading="lazy">'+(ti?'<figcaption class="cap">'+E(ti)+'</figcaption>':'')+'</figure>'};return marked.parse(t||'',{renderer:r})};
+const AUD=/\.(mp3|m4a|aac|ogg|oga|wav)([?#].*)?$/i;
+const sbite=(h,cap)=>{h=String(h||'').replace(/&amp;/g,'&');const ia=iaId(h);let m='';
+ if(AUD.test(h))m=`<audio controls preload="metadata" src="${E(U(h))}"></audio>`;
+ else if(ia)m=`<div data-iaa="${E(ia)}"><iframe src="https://archive.org/embed/${E(ia)}" title="${E(cap||'Audio')}" height="60" allowfullscreen loading="lazy"></iframe></div>`;
+ else return'';
+ const c=cap&&cap!==h&&!/^https?:/.test(cap)?`<figcaption class="cap">${E(cap)}</figcaption>`:'';return`<figure class="apw sb">${m}${c}</figure>`};
+const MD=t=>{if(!window.marked)return'<p>'+E(t)+'</p>';const r=new marked.Renderer();r.image=function(h,ti,x){if(h&&typeof h==='object'){ti=h.title;x=h.text;h=h.href}const sb=sbite(h,ti||x);if(sb)return sb;return'<figure class="pimg"><img src="'+E(h||'')+'" alt="'+E(x||'')+'" loading="lazy">'+(ti?'<figcaption class="cap">'+E(ti)+'</figcaption>':'')+'</figure>'};
+ return marked.parse(t||'',{renderer:r}).replace(/<p><a href="([^"]+)"[^>]*>([\s\S]*?)<\/a><\/p>/g,(all,h,txt)=>sbite(h,txt.replace(/<[^>]+>/g,''))||all)};
 const slug=t=>String(t).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 const COL=c=>'c-'+(c||'paper');
 const ICON={
@@ -184,12 +191,12 @@ const vplayer=p=>{const y=ytId(p.video_url),vm=String(p.video_url||'').match(/vi
  else if(vm)m=`<div class="pf"><iframe src="https://player.vimeo.com/video/${vm[1]}" title="${E(p.title)}" allow="fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>`;
  return m?`<figure class="pvw">${m}${cap}</figure>`:''};
 const iaAudio=id=>fetch(`https://archive.org/metadata/${id}`).then(r=>r.json()).then(m=>{const fs=(m.files||[]).filter(x=>/\.mp3$/i.test(x.name)).sort((a,c)=>(/vbr/i.test(c.format||'')?1:0)-(/vbr/i.test(a.format||'')?1:0));return fs[0]?`https://archive.org/download/${id}/${fs[0].name.split('/').map(encodeURIComponent).join('/')}`:null}).catch(()=>null);
-const aplayer=(p,d)=>{const cap=p.audio_caption?`<figcaption class="cap">${E(p.audio_caption)}</figcaption>`:'';let m='';
+const aplayer=(p,d)=>{const ofVid=!!(p.video_file||p.video_url)&&p.video_position!=='after'&&p.audio_position!=='after';const cap=p.audio_caption?`<figcaption class="cap">${E(p.audio_caption)}</figcaption>`:'';let m='';
  const af=p.audio_file||(/\.(mp3|m4a|aac|ogg|oga|wav)([?#].*)?$/i.test(p.audio_url||'')?p.audio_url:''),ia=iaId(p.audio_url);
  if(af)m=`<audio controls preload="metadata" src="${E(U(af))}"></audio>`;
  else if(ia)m=`<div data-iaa="${E(ia)}"><iframe src="https://archive.org/embed/${E(ia)}" title="${E(p.title)}" height="60" allowfullscreen loading="lazy"></iframe></div>`;
  else if(p.audio_embed){const fr=String(p.audio_embed).match(/<iframe[\s\S]*?<\/iframe>/gi);if(fr)m=fr.join('')}
- return m?`<figure class="apw"><p class="mono al">${E(d.blog_listen||'Escucha esta entrada')}</p>${m}${cap}</figure>`:''};
+ return m?`<figure class="apw"><p class="mono al">${E(ofVid?(d.blog_listen_video||'Escucha la versión en audio del vídeo'):(d.blog_listen||'Escucha esta entrada'))}</p>${m}${cap}</figure>`:''};
 const hasAud=p=>!!(p.audio_file||p.audio_url||p.audio_embed);
 const art=(d,p,back,tag,pn)=>{const mins=Math.max(1,Math.round(String(p.body||'').split(/\s+/).length/200));document.title=p.title+' — '+d.site_title;
  return `<section class="block"><div class="wrap post">${back}<div class="meta mono">${tag?`<span class="tag">${E(tag)}</span>`:''}<span>${fd(p.date)}</span>${p.body?`<span>· ${mins} ${E(d.blog_read)}</span>`:''}</div><h1>${E(p.title)}</h1>${(p.excerpt||p.summary)?`<p class="lede">${E(p.excerpt||p.summary)}</p>`:''}${p.cover&&!((p.video_file||p.video_url)&&p.video_position!=='after')?img(p.cover,p.cover_alt):''}${p.video_position==='after'?'':vplayer(p)}${p.audio_position==='after'?'':aplayer(p,d)}<div class="prose">${MD(p.body)}</div>${p.audio_position==='after'?aplayer(p,d):''}${p.video_position==='after'?vplayer(p):''}${cred(p)}${pn||''}</div></section>`};
