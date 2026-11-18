@@ -147,6 +147,10 @@ header .brand{font:900 26px Fraunces,serif;text-decoration:none;color:var(--ink)
 .ap .ap-x button{font-size:12px;font-weight:600;border-radius:99px;padding:4px 10px;min-width:58px;line-height:1.2}
 .ap .ap-x button:hover{background:var(--mint)}
 @media(max-width:560px){.ap{flex-wrap:wrap;gap:12px 12px;padding:12px}.ap .ap-p{width:48px;height:48px}.ap .ap-x{flex-direction:row;width:100%;justify-content:flex-end}}
+.ig{margin:26px 0;max-width:540px;background:var(--pink);border:2px solid var(--ink);box-shadow:6px 6px 0 var(--ink);padding:22px}
+.ig .igt{margin:0 0 14px;font-weight:600}.ig .ign{margin:12px 0 0;font-size:14px}.ig .igl{display:inline-block;margin-top:10px;font:500 14px 'IBM Plex Mono',monospace;color:var(--ink)}
+.ig-b{font:600 14px 'IBM Plex Mono',monospace;color:var(--ink);background:var(--gold);border:2px solid var(--ink);border-radius:99px;padding:10px 20px;cursor:pointer;box-shadow:3px 3px 0 var(--ink)}.ig-b:hover{transform:translate(-1px,-1px)}
+.ig.on{background:none;border:0;box-shadow:none;padding:0}.ig.on iframe{display:block;width:100%;height:720px;border:2px solid var(--ink);background:#fff}
 .apw{margin:0 0 28px}.prose .apw.sb{margin:26px 0}.apw .al{margin:0 0 8px}.apw audio{display:block;width:100%}.apw iframe{display:block;width:100%;border:0;border-radius:12px}
 .apw iframe[src*="spotify.com"]{height:152px}.apw iframe[src*="archive.org"]{height:60px}.ai{opacity:.75}
 .c-pink{background:var(--pink)}.c-gold{background:var(--gold)}.c-aqua{background:var(--aqua)}.c-red{background:var(--red);color:var(--paper)}.c-olive{background:var(--olive)}.c-mint{background:var(--mint)}.c-paper{background:var(--paper)}
@@ -166,8 +170,10 @@ const sbite=(h,cap)=>{h=String(h||'').replace(/&amp;/g,'&');const ia=iaId(h);let
  else if(ia)m=`<div data-iaa="${E(ia)}"><iframe src="https://archive.org/embed/${E(ia)}" title="${E(cap||'Audio')}" height="60" allowfullscreen loading="lazy"></iframe></div>`;
  else return'';
  const c=cap&&cap!==h&&!/^https?:/.test(cap)?`<figcaption class="cap">${E(cap)}</figcaption>`:'';return`<figure class="apw sb">${m}${c}</figure>`};
+const IG=u=>{const m=String(u||'').replace(/&amp;/g,'&').match(/instagram\.com\/(?:[\w.]+\/)?(p|reel|reels|tv)\/([\w-]+)/i);return m?{t:m[1].toLowerCase()==='reels'?'reel':m[1].toLowerCase(),c:m[2]}:null};
+const igBox=i=>{const url=`https://www.instagram.com/${i.t}/${i.c}/`;return`<figure class="ig"><p class="mono igt">Publicación de Instagram</p><button type="button" class="ig-b" data-ig="${E(i.t+'/'+i.c)}">Cargar publicación</button><p class="ign">Al cargarla, Instagram recibirá tu visita.</p><a class="igl" href="${E(url)}" target="_blank" rel="noopener">Abrir en Instagram ↗</a></figure>`};
 const MD=t=>{if(!window.marked)return'<p>'+E(t)+'</p>';const r=new marked.Renderer();r.image=function(h,ti,x){if(h&&typeof h==='object'){ti=h.title;x=h.text;h=h.href}const sb=sbite(h,ti||x);if(sb)return sb;return'<figure class="pimg"><img src="'+E(h||'')+'" alt="'+E(x||'')+'" loading="lazy">'+(ti?'<figcaption class="cap">'+E(ti)+'</figcaption>':'')+'</figure>'};
- return marked.parse(t||'',{renderer:r}).replace(/<p><a href="([^"]+)"[^>]*>([\s\S]*?)<\/a><\/p>/g,(all,h,txt)=>sbite(h,txt.replace(/<[^>]+>/g,''))||all)};
+ return marked.parse(t||'',{renderer:r}).replace(/<p><a href="([^"]+)"[^>]*>([\s\S]*?)<\/a><\/p>/g,(all,h,txt)=>sbite(h,txt.replace(/<[^>]+>/g,''))||(IG(h)?igBox(IG(h)):all))};
 const slug=t=>String(t).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 const COL=c=>'c-'+(c||'paper');
 const ICON={
@@ -211,7 +217,11 @@ const aplayer=(p,d)=>{const ofVid=!!(p.video_file||p.video_url)&&p.video_positio
  if(af)m=`<audio controls preload="metadata" src="${E(U(af))}"></audio>`;
  else if(ia)m=`<div data-iaa="${E(ia)}"><iframe src="https://archive.org/embed/${E(ia)}" title="${E(p.title)}" height="60" allowfullscreen loading="lazy"></iframe></div>`;
  else if(p.audio_embed){const fr=String(p.audio_embed).match(/<iframe[\s\S]*?<\/iframe>/gi);if(fr)m=fr.join('')}
- return m?`<figure class="apw"><p class="mono al">${E(ofVid?(d.blog_listen_video||'Escucha la versión en audio del vídeo'):(d.blog_listen||'Escucha esta entrada'))}</p>${m}${cap}</figure>`:''};
+ return m?`<figure class="apw"><p class="mono al">${E(ofVid?(d.blog_listen_video||'Escucha la versión en audio de esta entrada'):(d.blog_listen||'Escucha esta entrada'))}</p>${m}${cap}</figure>`:''};
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('.ig-b');if(!b)return;const f=b.closest('.ig'),k=b.dataset.ig;
+ f.classList.add('on');f.innerHTML=`<iframe src="https://www.instagram.com/${E(k)}/embed/captioned/" title="Publicación de Instagram" loading="lazy" allowtransparency="true" scrolling="no"></iframe>`});
+window.addEventListener('message',e=>{if(e.origin!=='https://www.instagram.com')return;try{const d=typeof e.data==='string'?JSON.parse(e.data):e.data;const h=d&&d.type==='MEASURE'&&d.details&&d.details.height;
+ if(h)document.querySelectorAll('.ig iframe').forEach(f=>{if(f.contentWindow===e.source)f.style.height=Math.ceil(h)+'px'})}catch(x){}});
 const fmt=t=>{if(!isFinite(t))return'--:--';t=Math.floor(t);const h=Math.floor(t/3600),m=Math.floor(t%3600/60),x=String(t%60).padStart(2,'0');return h?`${h}:${String(m).padStart(2,'0')}:${x}`:`${m}:${x}`};
 const SPD=[1,1.25,1.5,2,0.75];
 function enh(root){(root||document).querySelectorAll('.apw audio[controls]').forEach(a=>{
@@ -269,7 +279,7 @@ const R={
  work:s=>`<div class="wrap"><h2>${E(s.heading)}</h2>${s.intro?`<p class="intro">${E(s.intro)}</p>`:''}<div class="work">${(s.items||[]).map(i=>{const T=i.link?'a':'article';return `<${T} class="card" ${i.link?`href="${E(U(i.link))}"`:''}><div class="img ${COL(i.color)}">${img(i.image,i.image_alt)}</div><div class="body">${i.tag?`<span class="tag mono">${E(i.tag)}</span>`:''}<h3>${E(i.title)}</h3><p>${E(i.text)}</p></div></${T}>`}).join('')}</div></div>`,
  about:s=>`<div class="wrap about"><div>${s.image?img(s.image,s.image_alt):`${s.list&&s.list.length?`<div class="sheet"><h3>${E(s.list_title)}</h3><ul class="chk">${s.list.map(x=>`<li class="${x.done?'on':''}"><i></i><span>${E(x.text)}</span></li>`).join('')}</ul></div>`:`<div class="sheet">${E(s.note)}</div>`}`}</div><div><h2>${E(s.heading)}</h2><div class="prose">${MD(s.body)}</div></div></div>`,
  feature:s=>`<div class="wrap"><div class="feat ${COL(s.color)} ${s.image?'':'nopic'}">${s.image?`<div>${img(s.image,s.image_alt)}</div>`:''}<div><h2>${E(s.heading)}</h2><div class="prose">${MD(s.body)}</div>${btn(s.button_label,s.button_link,'red')}</div></div></div>`,
- embed:s=>`<div class="wrap">${s.heading?`<h2>${E(s.heading)}</h2>`:''}${s.intro?`<p class="intro">${E(s.intro)}</p>`:''}<div class="embed">${s.code||''}</div>${s.caption?`<p class="cap">${E(s.caption)}</p>`:''}</div>`,
+ embed:s=>`<div class="wrap">${s.heading?`<h2>${E(s.heading)}</h2>`:''}${s.intro?`<p class="intro">${E(s.intro)}</p>`:''}<div class="embed">${IG(s.code)?igBox(IG(s.code)):(s.code||'')}</div>${s.caption?`<p class="cap">${E(s.caption)}</p>`:''}</div>`,
  gallery:s=>`<div class="wrap">${s.heading?`<h2>${E(s.heading)}</h2>`:''}<div class="gal">${(s.images||[]).map(i=>`<figure>${img(i.image,i.alt)}${i.caption?`<figcaption class="cap">${E(i.caption)}</figcaption>`:''}</figure>`).join('')}</div></div>`,
  text:s=>`<div class="wrap"><h2>${E(s.heading)}</h2><div class="prose">${MD(s.body)}</div></div>`,
 books:s=>{const B=BS(CUR),n=+s.count||8;return `<div class="wrap"><h2>${E(s.heading)}</h2>${s.intro?`<p class="intro">${E(s.intro)}</p>`:''}${B.length?bcar(B.slice(0,n)):`<p>${E(CUR.empty_label)}</p>`}${B.length>n?`<p style="margin-top:26px"><a class="btn" href="?books=all">${E(CUR.books_all||'Ver todos los libros')}</a></p>`:''}</div>`},
