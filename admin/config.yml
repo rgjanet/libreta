@@ -160,6 +160,7 @@ collections:
           - {label: Blog - "Back to blog" link, name: blog_back, widget: string}
           - {label: Blog - "min read" label, name: blog_read, widget: string}
           - {label: Blog - label above the audio player, name: blog_listen, widget: string, required: false}
+          - {label: Blog - label above the audio when it sits below a video (audio version of the video), name: blog_listen_video, widget: string, required: false}
           - {label: Blog - "Newer" post label, name: blog_newer, widget: string}
           - {label: Blog - "Older" post label, name: blog_older, widget: string}
           - {label: Blog - message when a post is missing in this language, name: blog_missing, widget: string}
