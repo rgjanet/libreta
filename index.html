@@ -132,6 +132,21 @@ header .brand{font:900 26px Fraunces,serif;text-decoration:none;color:var(--ink)
 .si{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;border:2px solid var(--ink);background:var(--paper);color:var(--ink);text-decoration:none;transition:background .15s}
 .si:hover,.si:focus-visible{background:var(--gold)}
 .st{font:600 14px 'IBM Plex Mono',monospace;padding:12px 20px;border:2px solid var(--ink);border-radius:99px;background:var(--paper);color:var(--ink);text-decoration:none}.st:hover,.st:focus-visible{background:var(--gold)}
+.ap{display:flex;align-items:center;gap:14px;background:var(--paper);border:2px solid var(--ink);box-shadow:6px 6px 0 var(--ink);padding:14px 16px;font-family:'IBM Plex Mono',monospace;color:var(--ink)}
+.ap button{font:inherit;cursor:pointer;color:var(--ink);background:#fff;border:2px solid var(--ink);padding:0}
+.ap .ap-p{flex:none;width:54px;height:54px;border-radius:50%;background:var(--gold);box-shadow:3px 3px 0 var(--ink);display:grid;place-items:center;transition:transform .12s,box-shadow .12s}
+.ap .ap-p:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}.ap .ap-p:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.ap .ap-p svg{width:22px;height:22px;fill:var(--ink)}.ap .ap-p .i-pause{display:none}.ap.on .ap-p .i-play{display:none}.ap.on .ap-p .i-pause{display:block}
+.apw.sb .ap .ap-p{background:var(--pink)}.apw:not(.sb) .ap .ap-p{background:var(--aqua)}
+.ap .ap-m{flex:1;min-width:0}.ap .ap-t{display:flex;justify-content:space-between;font-size:13px;margin-top:8px;font-weight:500}
+.ap .ap-s{-webkit-appearance:none;appearance:none;width:100%;height:14px;border:2px solid var(--ink);border-radius:99px;margin:0;display:block;cursor:pointer;background:linear-gradient(90deg,var(--red) var(--p,0%),#fff var(--p,0%))}
+.ap .ap-s::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--gold);border:2px solid var(--ink);box-shadow:2px 2px 0 var(--ink)}
+.ap .ap-s::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--gold);border:2px solid var(--ink);box-shadow:2px 2px 0 var(--ink)}
+.ap .ap-s::-moz-range-track{background:transparent}
+.ap .ap-x{flex:none;display:flex;flex-direction:column;gap:6px}
+.ap .ap-x button{font-size:12px;font-weight:600;border-radius:99px;padding:4px 10px;min-width:58px;line-height:1.2}
+.ap .ap-x button:hover{background:var(--mint)}
+@media(max-width:560px){.ap{flex-wrap:wrap;gap:12px 12px;padding:12px}.ap .ap-p{width:48px;height:48px}.ap .ap-x{flex-direction:row;width:100%;justify-content:flex-end}}
 .apw{margin:0 0 28px}.prose .apw.sb{margin:26px 0}.apw .al{margin:0 0 8px}.apw audio{display:block;width:100%}.apw iframe{display:block;width:100%;border:0;border-radius:12px}
 .apw iframe[src*="spotify.com"]{height:152px}.apw iframe[src*="archive.org"]{height:60px}.ai{opacity:.75}
 .c-pink{background:var(--pink)}.c-gold{background:var(--gold)}.c-aqua{background:var(--aqua)}.c-red{background:var(--red);color:var(--paper)}.c-olive{background:var(--olive)}.c-mint{background:var(--mint)}.c-paper{background:var(--paper)}
@@ -197,6 +212,23 @@ const aplayer=(p,d)=>{const ofVid=!!(p.video_file||p.video_url)&&p.video_positio
  else if(ia)m=`<div data-iaa="${E(ia)}"><iframe src="https://archive.org/embed/${E(ia)}" title="${E(p.title)}" height="60" allowfullscreen loading="lazy"></iframe></div>`;
  else if(p.audio_embed){const fr=String(p.audio_embed).match(/<iframe[\s\S]*?<\/iframe>/gi);if(fr)m=fr.join('')}
  return m?`<figure class="apw"><p class="mono al">${E(ofVid?(d.blog_listen_video||'Escucha la versión en audio del vídeo'):(d.blog_listen||'Escucha esta entrada'))}</p>${m}${cap}</figure>`:''};
+const fmt=t=>{if(!isFinite(t))return'--:--';t=Math.floor(t);const h=Math.floor(t/3600),m=Math.floor(t%3600/60),x=String(t%60).padStart(2,'0');return h?`${h}:${String(m).padStart(2,'0')}:${x}`:`${m}:${x}`};
+const SPD=[1,1.25,1.5,2,0.75];
+function enh(root){(root||document).querySelectorAll('.apw audio[controls]').forEach(a=>{
+ if(a.dataset.e)return;a.dataset.e=1;a.removeAttribute('controls');a.preload='metadata';
+ const w=document.createElement('div');w.className='ap';
+ w.innerHTML=`<button type="button" class="ap-p" aria-label="Reproducir"><svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg><svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h4.5v16H6zM13.5 4H18v16h-4.5z"/></svg></button><div class="ap-m"><input type="range" class="ap-s" min="0" max="1000" value="0" step="1" aria-label="Posición del audio"><div class="ap-t"><span class="cu">0:00</span><span class="du">--:--</span></div></div><div class="ap-x"><button type="button" class="ap-b" aria-label="Retroceder 15 segundos">↺ 15s</button><button type="button" class="ap-r" aria-label="Velocidad de reproducción">1×</button></div>`;
+ a.after(w);const $=q=>w.querySelector(q),bar=$('.ap-s');let si=0;
+ const upd=()=>{const d=a.duration,p=d&&isFinite(d)?a.currentTime/d*1000:0;bar.value=p;bar.style.setProperty('--p',p/10+'%');$('.cu').textContent=fmt(a.currentTime)};
+ a.addEventListener('loadedmetadata',()=>{$('.du').textContent=fmt(a.duration);upd()});a.addEventListener('durationchange',()=>{$('.du').textContent=fmt(a.duration)});
+ a.addEventListener('timeupdate',upd);
+ a.addEventListener('play',()=>{w.classList.add('on');$('.ap-p').setAttribute('aria-label','Pausar');document.querySelectorAll('.apw audio').forEach(o=>{if(o!==a)o.pause()})});
+ const off=()=>{w.classList.remove('on');$('.ap-p').setAttribute('aria-label','Reproducir')};a.addEventListener('pause',off);a.addEventListener('ended',off);
+ $('.ap-p').onclick=()=>a.paused?a.play():a.pause();
+ bar.oninput=()=>{if(a.duration&&isFinite(a.duration)){a.currentTime=bar.value/1000*a.duration;upd()}};
+ $('.ap-b').onclick=()=>{a.currentTime=Math.max(0,a.currentTime-15)};
+ $('.ap-r').onclick=e=>{si=(si+1)%SPD.length;a.playbackRate=SPD[si];e.currentTarget.textContent=SPD[si]+'×'};
+ if(a.readyState>0){$('.du').textContent=fmt(a.duration)}})}
 const hasAud=p=>!!(p.audio_file||p.audio_url||p.audio_embed);
 const art=(d,p,back,tag,pn)=>{const mins=Math.max(1,Math.round(String(p.body||'').split(/\s+/).length/200));document.title=p.title+' — '+d.site_title;
  return `<section class="block"><div class="wrap post">${back}<div class="meta mono">${tag?`<span class="tag">${E(tag)}</span>`:''}<span>${fd(p.date)}</span>${p.body?`<span>· ${mins} ${E(d.blog_read)}</span>`:''}</div><h1>${E(p.title)}</h1>${(p.excerpt||p.summary)?`<p class="lede">${E(p.excerpt||p.summary)}</p>`:''}${p.cover&&!((p.video_file||p.video_url)&&p.video_position!=='after')?img(p.cover,p.cover_alt):''}${p.video_position==='after'?'':vplayer(p)}${p.audio_position==='after'?'':aplayer(p,d)}<div class="prose">${MD(p.body)}</div>${p.audio_position==='after'?aplayer(p,d):''}${p.video_position==='after'?vplayer(p):''}${cred(p)}${pn||''}</div></section>`};
@@ -273,7 +305,8 @@ async function draw(l){
  const Q=getQ();if(['post','posts','page','work','books'].some(k=>Q.get(k)!==null))body=view(d,Q);
  document.getElementById('app').innerHTML=`${d.announcement?`<div class="strip mono">${E(d.announcement)}</div>`:''}<header id="hd"><div class="wrap"><a class="brand" href="?">${E(d.site_title)}</a><button type="button" class="menu-btn mono" id="mb" aria-expanded="false" aria-controls="mn">Menú</button><nav class="mono" id="mn" aria-label="Principal"><button type="button" class="nclose" aria-label="Cerrar menú">×</button>${nav}</nav>${LANGS.length>1?`<div class="lang mono" role="group" aria-label="Language"><button data-l="en" aria-pressed="${l=='en'}">EN</button><button data-l="es" aria-pressed="${l=='es'}">ES</button></div>`:''}</div></header><main>${body}</main><footer><div class="pen"><div class="wrap"><h2>${E(d.footer_heading)}</h2><nav class="soc" aria-label="Redes">${(d.footer_links||[]).map(flink).join('')}</nav></div></div><div class="legal mono">${E(d.legal)}</div></footer><dialog class="lb" id="lb" aria-label="Video"><div class="lb-in"><button class="lb-x" aria-label="${l=='es'?'Cerrar':'Close'}">×</button><div class="lb-m"></div><div class="lb-t"></div><div class="lb-l"></div></div></dialog>`;
  document.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>draw(b.dataset.l));
- document.querySelectorAll('[data-iaa]').forEach(el=>iaAudio(el.dataset.iaa).then(s=>{if(s&&el.isConnected)el.outerHTML=`<audio controls preload="metadata" src="${E(s)}"></audio>`}));
+ document.querySelectorAll('[data-iaa]').forEach(el=>iaAudio(el.dataset.iaa).then(s=>{if(s&&el.isConnected){el.outerHTML=`<audio controls preload="metadata" src="${E(s)}"></audio>`;enh()}}));
+ enh();
  document.querySelectorAll('.pf[data-ia]').forEach(el=>iaFile(el.dataset.ia).then(s=>{if(s&&el.isConnected)el.outerHTML=`<video class="pv" src="${E(s)}" controls playsinline preload="metadata"></video>`}));
  const RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
   if(!RM&&'IntersectionObserver'in window){
