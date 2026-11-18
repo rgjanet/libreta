@@ -138,7 +138,7 @@ header .brand{font:900 26px Fraunces,serif;text-decoration:none;color:var(--ink)
 .ap .ap-p:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}.ap .ap-p:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
 .ap .ap-p svg{width:22px;height:22px;fill:var(--ink)}.ap .ap-p .i-pause{display:none}.ap.on .ap-p .i-play{display:none}.ap.on .ap-p .i-pause{display:block}
 .apw.sb .ap .ap-p{background:var(--pink)}.apw:not(.sb) .ap .ap-p{background:var(--aqua)}
-.ap .ap-m{flex:1;min-width:0}.ap .ap-t{display:flex;justify-content:space-between;font-size:13px;margin-top:8px;font-weight:500}
+.ap .ap-m{flex:1;min-width:0}.ap .al{margin:0 0 10px;font-size:13px;font-weight:500}.ap .ap-t{display:flex;justify-content:space-between;font-size:13px;margin-top:8px;font-weight:500}
 .ap .ap-s{-webkit-appearance:none;appearance:none;width:100%;height:14px;border:2px solid var(--ink);border-radius:99px;margin:0;display:block;cursor:pointer;background:linear-gradient(90deg,var(--red) var(--p,0%),#fff var(--p,0%))}
 .ap .ap-s::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--gold);border:2px solid var(--ink);box-shadow:2px 2px 0 var(--ink)}
 .ap .ap-s::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--gold);border:2px solid var(--ink);box-shadow:2px 2px 0 var(--ink)}
@@ -218,7 +218,7 @@ function enh(root){(root||document).querySelectorAll('.apw audio[controls]').for
  if(a.dataset.e)return;a.dataset.e=1;a.removeAttribute('controls');a.preload='metadata';
  const w=document.createElement('div');w.className='ap';
  w.innerHTML=`<button type="button" class="ap-p" aria-label="Reproducir"><svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg><svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h4.5v16H6zM13.5 4H18v16h-4.5z"/></svg></button><div class="ap-m"><input type="range" class="ap-s" min="0" max="1000" value="0" step="1" aria-label="Posición del audio"><div class="ap-t"><span class="cu">0:00</span><span class="du">--:--</span></div></div><div class="ap-x"><button type="button" class="ap-b" aria-label="Retroceder 15 segundos">↺ 15s</button><button type="button" class="ap-r" aria-label="Velocidad de reproducción">1×</button></div>`;
- a.after(w);const $=q=>w.querySelector(q),bar=$('.ap-s');let si=0;
+ a.after(w);const $=q=>w.querySelector(q),bar=$('.ap-s');let si=0;const lb=a.closest('.apw')&&a.closest('.apw').querySelector(':scope > .al');if(lb)$('.ap-m').prepend(lb);
  const upd=()=>{const d=a.duration,p=d&&isFinite(d)?a.currentTime/d*1000:0;bar.value=p;bar.style.setProperty('--p',p/10+'%');$('.cu').textContent=fmt(a.currentTime)};
  a.addEventListener('loadedmetadata',()=>{$('.du').textContent=fmt(a.duration);upd()});a.addEventListener('durationchange',()=>{$('.du').textContent=fmt(a.duration)});
  a.addEventListener('timeupdate',upd);
