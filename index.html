@@ -55,6 +55,10 @@ header nav a{text-decoration:none;border-bottom:2px solid transparent}header nav
 .work{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
 .card{background:var(--paper);border:2px solid var(--ink);display:flex;flex-direction:column;text-decoration:none}
 .card .img{height:180px;border-bottom:2px solid var(--ink);overflow:hidden}.card .img img{width:100%;height:100%;object-fit:cover;display:block}
+.work.al{row-gap:0}
+.card.sub{display:grid;grid-template-rows:subgrid;grid-row:span 4;padding:16px 18px 20px;margin-bottom:24px}
+.card.sub .body{display:contents}.card.sub h3{grid-row:1;margin:8px 0 6px}.card.sub p:not(.cap){grid-row:2}.card.sub .embed{grid-row:3;align-self:start}.card.sub p.cap{grid-row:4;margin-top:10px}
+@supports not (grid-template-rows:subgrid){.work.al{row-gap:24px}.card.sub{display:flex;grid-row:auto;padding:0;margin:0}.card.sub .body{display:block;padding:16px 18px 20px}}
 .card .body{padding:16px 18px 20px}.card h3{font-size:24px;margin:8px 0 6px}.card p{margin:0;font-size:15px;line-height:1.5}
 .tag{display:inline-block;background:var(--gold);padding:2px 10px;border-radius:99px;border:1.5px solid var(--ink)}
 .about{display:grid;grid-template-columns:1fr 1.4fr;gap:44px;align-items:center}
@@ -201,7 +205,7 @@ const bcar=B=>`<div class="vcar"><div class="vgrid car bcar">${B.map(bk).join(''
 const vcar=items=>`<div class="vcar">${vgrid(items,1)}<div class="vnav"><button type="button" class="vp" aria-label="Anterior">←</button><button type="button" class="vn" aria-label="Siguiente">→</button></div></div>`;
 const CATS={
  video:ws=>vgrid(ws.map(toV)),
- audio:ws=>`<div class="work">${ws.map(w=>`<article class="card"><div class="body"><h3>${E(w.title)}</h3>${w.summary?`<p>${E(w.summary)}</p>`:''}<div class="embed" style="margin-top:14px">${w.embed||(w.audio_file?`<audio controls preload="none" src="${E(U(w.audio_file))}" style="width:100%"></audio>`:'')}</div>${cred(w)}</div></article>`).join('')}</div>`,
+ audio:ws=>`<div class="work al">${ws.map(w=>`<article class="card sub"><div class="body"><h3>${E(w.title)}</h3>${w.summary?`<p>${E(w.summary)}</p>`:''}<div class="embed" style="margin-top:14px">${w.embed||(w.audio_file?`<audio controls preload="none" src="${E(U(w.audio_file))}" style="width:100%"></audio>`:'')}</div>${cred(w)}</div></article>`).join('')}</div>`,
  writing:ws=>`<div class="work">${ws.map(w=>{const href=w.link?E(U(w.link)):w.body?`?work=${encodeURIComponent(PS(w))}`:'',T=href?'a':'article';return `<${T} class="card" ${href?`href="${href}"${w.link?' target="_blank" rel="noopener"':''}`:''}><div class="img ${COL(w.color)}">${w.cover?img(w.cover,w.cover_alt):''}</div><div class="body">${w.credit_name?`<span class="tag mono">${E(w.credit_name)}</span>`:''}<span class="mono dt">${fd(w.date)}</span><h3>${E(w.title)}</h3><p>${E(w.summary)}</p></div></${T}>`}).join('')}</div>`,
  pictures:ws=>ws.map(w=>`<div style="margin:0 0 54px"><h3 style="font-size:28px;margin-bottom:6px">${E(w.title)}</h3>${w.summary?`<p class="intro">${E(w.summary)}</p>`:''}<div class="gal">${((w.images&&w.images.length)?w.images:(w.cover?[{image:w.cover,alt:w.cover_alt}]:[])).map(i=>`<figure>${img(i.image,i.alt)}${i.caption?`<figcaption class="cap">${E(i.caption)}</figcaption>`:''}</figure>`).join('')}</div></div>`).join('')};
 const vplayer=p=>{const y=ytId(p.video_url),vm=String(p.video_url||'').match(/vimeo\.com\/(\d+)/),cap=p.video_caption?`<figcaption class="cap">${E(p.video_caption)}</figcaption>`:'';let m='';
