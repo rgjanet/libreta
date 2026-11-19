@@ -13,7 +13,7 @@ const clip=(t,n)=>t.length>n?t.slice(0,n-1).trim()+'…':t;
 const ymd=d=>{const x=new Date(d);return isNaN(x)?'':x.toISOString().slice(0,10)};
 const list=n=>{try{return rd(`content/generated/${n}.json`)}catch(e){return []}};
 
-for(const f of ['assets/vendor/marked.min.js','assets/fonts/fraunces-normal.woff2','assets/og-image.png','assets/icons/favicon.ico'])
+for(const f of ['assets/vendor/marked.min.js','assets/fonts/source-serif-4-normal.woff2','assets/og-image.png','assets/icons/favicon.ico'])
  if(!fs.existsSync(f)){console.error('Missing required file: '+f+' (upload it to the repository and publish again)');process.exit(1)}
 fs.rmSync(OUT,{recursive:true,force:true});fs.mkdirSync(OUT,{recursive:true});
 for(const d of ['admin','assets','content'])fs.cpSync(d,path.join(OUT,d),{recursive:true});

@@ -4,3 +4,6 @@
 - On every save, the GitHub Action in .github/workflows/deploy.yml builds the lists and publishes the site.
 - One-time setup: Settings > Pages > Build and deployment > Source = GitHub Actions.
 - Obsolete if present in the repo (safe to delete): admin/config.bilingual.yml, content/site.en.json, content/posts.en.json, content/posts.es.json.
+
+## Fonts and libraries
+Fonts (Source Serif 4, IBM Plex Mono, Caveat) and the Markdown library are served from this repo (assets/fonts, assets/vendor), not from Google or a CDN. Keep those folders when updating files.
