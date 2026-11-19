@@ -317,6 +317,8 @@ async function draw(l){
  document.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>draw(b.dataset.l));
  document.querySelectorAll('[data-iaa]').forEach(el=>iaAudio(el.dataset.iaa).then(s=>{if(s&&el.isConnected){el.outerHTML=`<audio controls preload="metadata" src="${E(s)}"></audio>`;enh()}}));
  enh();
+ const goHash=()=>{const h=decodeURIComponent(location.hash.slice(1));const t=h&&document.getElementById(h);if(t)t.scrollIntoView()};
+ goHash();setTimeout(goHash,350);addEventListener('load',goHash,{once:true});
  document.querySelectorAll('.pf[data-ia]').forEach(el=>iaFile(el.dataset.ia).then(s=>{if(s&&el.isConnected)el.outerHTML=`<video class="pv" src="${E(s)}" controls playsinline preload="metadata"></video>`}));
  const RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
   if(!RM&&'IntersectionObserver'in window){
